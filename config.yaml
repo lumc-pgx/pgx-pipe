@@ -1,0 +1,48 @@
+# Pipeline Configuration
+
+# Flag to indicate which platform the data was sequenced on
+# SEQUENCING_PLATFORM must be either RS2 or SEQUEL
+SEQUENCING_PLATFORM: RS2
+
+# Path to the folders which contain the sequencing output for each cell
+SOURCE_DATA_PATHS:
+  - /exports/lgtc/equipment/PacBio/rundata/RV-100317_230/A01_1/Analysis_Results 
+
+# Path to barcode fasta file used for demultiplexing
+BARCODES: /exports/lgtc/equipment/PacBio/jobs/000/000206/pacbio-barcodes/barcodes_pacbio_pad_index_1_9_v2/sequence/barcodes_pacbio_pad_index_1_9_v2.fasta  
+
+# Path to the genome fasta file to be used for mapping/alignment
+# The location of this file should be writable so that indexes can be created
+GENOME: /bam-export/Guy/GRCh38_no_alt_analysis_set/sequence/GRCh38_no_alt_analysis_set.fasta
+
+# path to the gene definition file
+GENE: /home/wgallard/MyData/pharmacogenomics_pipeline/locus_definitions/PacBio/CYP2D6.yaml
+
+# Path to the folder containing the smrt command executables
+SMRTCMD_PATH: /usr/local/smrtlink/smrtcmds/bin
+
+# Path to the ccs_check tool
+CCS_CHECK_PATH: /usr/local/ccscheck/bin
+
+# params for individual stages
+# to disable a stage, remove its parameters
+STAGE_PARAMS:
+  LAA: 
+    trimEnds: 21
+    ignoreEnds: 21
+    fullLength: True
+    minLength: 6000
+ 
+  CCS:
+    minLength: 6000
+    maxLength: 7000
+    minPasses: 1
+    minPredictedAccuracy: 0.75
+
+  CCS_CHECK:
+    minQV: 0             # exclude subreads with qv < minQV
+    minFreq: 0.02        # exclude variants with a frequency < minFreq (reduce baseline complexity)
+    chromosome: chr22    # only include subreads which map to this chromosome
+    showIndel: False     # if true, both snps and indels will be included, otherwise only snps
+    minLength: 2000      # exclude reads shorter than minLength
+
