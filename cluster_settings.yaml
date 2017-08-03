@@ -1,26 +1,6 @@
 # Default parameters for jobs
 __default__:
   threads: 1
-  vmem: 4G
+  vmem: 1G
 
-# Parameters specific to LAA
-# LAA is computationally intensive
-laa:
-  threads: 2
-  vmem: 12G
 
-# parameters specific to CCS
-# CCS is less resource intensive than LAA
-ccs:
-  threads: 2
-  vmem: 6G
-
-# Parameters for ccs_check
-ccs_check:
-  threads: 1
-  vmem: 16G
-
-# Parameters for the ccs_check summary tool
-ccs_check_summary:
-  threads: 1
-  vmem: 8G
