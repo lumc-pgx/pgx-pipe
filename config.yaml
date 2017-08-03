@@ -46,3 +46,6 @@ STAGE_PARAMS:
     showIndel: False     # if true, both snps and indels will be included, otherwise only snps
     minLength: 2000      # exclude reads shorter than minLength
 
+  HAPLOTYPER:
+    ignoreBoundary: True  # insertions at start and end of sequence should be ignored
+
