@@ -33,15 +33,18 @@ var_call = VariantCalling(config, "variant calling")
 include: "modules/haplotyping/helper.snake"
 haplotyper = Haplotyping(config, "haplotyping")
 
+include: "modules/structural_variation/helper.snake"
+struct_var = SVHelper(config, "structural variation")
+
 
 # main workflow
 localrules:
-    all, preprocessing, variant_calling, haplotyping
+    all, preprocessing, variant_calling, haplotyping, structural_variation
 
 
 rule all:
     input:
-        expand("haplotyping/{targets}", targets=haplotyper.outputs)
+        expand("structural_variation/{targets}", targets=struct_var.outputs)
 
 
 rule preprocessing:
@@ -86,4 +89,19 @@ rule haplotyping:
     shell:
         "cd {params.mod_dir} && "
         "pipe-runner --directory {params.out_dir} --configfile {params.config} --extraconfig VARIANT_DATA_PATH={params.var_dir}"
+
+
+rule structural_variation:
+    input:
+        rules.preprocessing.output
+    output:
+        expand("structural_variation/{targets}", targets=struct_var.outputs)
+    params:
+        mod_dir = srcdir("modules/structural_variation"),
+        config = srcdir("config.yaml"),
+        out_dir = os.path.join(os.getcwd(), "structural_variation"),
+        laa_dir = os.path.join(os.getcwd(), "preprocessor/LAA")
+    shell:
+        "cd {params.mod_dir} && "
+        "pipe-runner --directory {params.out_dir} --configfile {params.config} --extraconfig ALLELE_FASTQ_PATH={params.laa_dir}"
 
