@@ -13,3 +13,6 @@
 [submodule "modules/haplotyping"]
 	path = modules/haplotyping
 	url = git@git.lumc.nl:PharmacogenomicsPipe/haplotyping.git
+[submodule "modules/structural_variation"]
+	path = modules/structural_variation
+	url = git@git.lumc.nl:PharmacogenomicsPipe/structural_variation.git
