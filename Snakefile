@@ -44,6 +44,7 @@ localrules:
 
 rule all:
     input:
+        expand("haplotyping/{targets}", targets=haplotyper.outputs),
         expand("structural_variation/{targets}", targets=struct_var.outputs)
 
 
