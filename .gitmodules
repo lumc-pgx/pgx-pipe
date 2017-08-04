@@ -7,3 +7,6 @@
 [submodule "modules/modules/haplotyping"]
 	path = modules/modules/haplotyping
 	url = git@git.lumc.nl:PharmacogenomicsPipe/haplotyping.git
+[submodule "modules/variant_calling"]
+	path = modules/variant_calling
+	url = git@git.lumc.nl:PharmacogenomicsPipe/variant_calling.git
