@@ -1,0 +1,9 @@
+[submodule "modules/preprocessor"]
+	path = modules/preprocessor
+	url = git@git.lumc.nl:PharmacogenomicsPipe/preprocessor.git
+[submodule "modules/modules/variant_calling"]
+	path = modules/modules/variant_calling
+	url = git@git.lumc.nl:PharmacogenomicsPipe/variant_calling.git
+[submodule "modules/modules/haplotyping"]
+	path = modules/modules/haplotyping
+	url = git@git.lumc.nl:PharmacogenomicsPipe/haplotyping.git
