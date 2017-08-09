@@ -1,7 +1,7 @@
 import os
 
 include: "modules/preprocessor/helper.snake"
-PARAMS = Preprocessing(config, "Pugwash Pharmacogenomics")
+PARAMS = PreprocessingHelper(config, "Pugwash Pharmacogenomics")
 
 onsuccess: PARAMS.onsuccess()
 onerror: PARAMS.onerror()
@@ -27,9 +27,9 @@ localrules:
 rule all:
     input:
         preprocessing_params.outputs,
-        VariantCalling(config, "").outputs,
-        Haplotyping(config, "").outputs,
-        SVHelper(config, "").outputs
+        VariantCallingHelper(config).outputs,
+        HaplotypingHelper(config).outputs,
+        SVHelper(config).outputs
 
 
 # -------------- rules for preprocessing workflow ---------------------
