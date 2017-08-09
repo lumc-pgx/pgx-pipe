@@ -1,108 +1,93 @@
-# load config file
-configfile: srcdir("config.yaml")
-
-# imports
 import os
-import yaml
-import datetime
-
-# yaml representer for dumping config
-from yaml.representer import Representer
-import collections
-
-
-# handlers for workflow exit status
-onsuccess:
-    print("Pugwash workflow completed successfully")
-    yaml.add_representer(collections.OrderedDict, Representer.represent_dict)
-    config_file = "config.{}.yaml".format("{:%Y-%m-%d_%H:%M:%S}".format(datetime.datetime.now()))
-    with open(config_file, "w") as outfile:
-        print(yaml.dump(config, default_flow_style=False), file=outfile)
-
-onerror:
-    print("Error encountered while executing workflow")
-    shell("cat {log}")
-
 
 include: "modules/preprocessor/helper.snake"
-preproc = Preprocessing(config, "preprocessing") 
+PARAMS = Preprocessing(config, "Pugwash Pharmacogenomics")
 
+onsuccess: PARAMS.onsuccess()
+onerror: PARAMS.onerror()
+
+preprocessing_params = PARAMS
+
+# additional helpers
 include: "modules/variant_calling/helper.snake"
-var_call = VariantCalling(config, "variant calling")
-
 include: "modules/haplotyping/helper.snake"
-haplotyper = Haplotyping(config, "haplotyping")
-
 include: "modules/structural_variation/helper.snake"
-struct_var = SVHelper(config, "structural variation")
 
-
-# main workflow
+# don't submit the following rules to the cluster
 localrules:
-    all, preprocessing, variant_calling, haplotyping, structural_variation
+    all,
+    fastq_to_fasta,
+    barcoding_summary,
+    link_sources_vc,
+    link_sources_ht,
+    link_sources_sv
 
 
+# workflow outputs
 rule all:
     input:
-        expand("haplotyping/{targets}", targets=haplotyper.outputs),
-        expand("structural_variation/{targets}", targets=struct_var.outputs)
+        preprocessing_params.outputs,
+        VariantCalling(config, "").outputs,
+        Haplotyping(config, "").outputs,
+        SVHelper(config, "").outputs
 
 
-rule preprocessing:
+# -------------- rules for preprocessing workflow ---------------------
+include: "modules/preprocessor/rules/source_data.snake"
+include: "modules/preprocessor/rules/barcoding.snake"
+include: "modules/preprocessor/rules/barcoding_summary.snake"
+include: "modules/preprocessor/rules/merge_subreadset.snake"
+include: "modules/preprocessor/rules/demultiplex.snake"
+include: "modules/preprocessor/rules/consolidate_xml.snake"
+include: "modules/preprocessor/rules/laa.snake"
+include: "modules/preprocessor/rules/laa_summary.snake"
+include: "modules/preprocessor/rules/ccs.snake"
+include: "modules/preprocessor/rules/ccs_check.snake"
+include: "modules/preprocessor/rules/fastq_to_fasta.snake"
+include: "modules/preprocessor/rules/ccs_check_summary.snake"
+
+
+# ------------------ rules for variant calling ------------------------
+include: "modules/variant_calling/rules/gene_reference.snake"
+include: "modules/variant_calling/rules/call_variants.snake"
+
+rule link_sources_vc:
+    # link the LAA output to the variant calling input
     input:
-        preproc.inputs
+        "preprocessor/LAA/{barcode}.fasta"
     output:
-        expand("preprocessor/{targets}", targets=preproc.outputs)
-    params:
-        mod_dir = srcdir("modules/preprocessor"),
-        config = srcdir("config.yaml"),
-        out_dir = os.path.join(os.getcwd(), "preprocessor")
+        "variant_calling/inputs/{barcode}.fasta"
     shell:
-        "cd {params.mod_dir} && "
-        "pipe-runner --directory {params.out_dir} --configfile {params.config}"
+        "ln -s -r {input} {output}"
 
 
-rule variant_calling:
+# --------------------- rules for haplotyping -------------------------
+include: "modules/haplotyping/rules/matches.snake"
+include: "modules/haplotyping/rules/tabulate.snake"
+include: "modules/haplotyping/rules/pick.snake"
+    
+rule link_sources_ht:
+    # link the variant calling output to the haplotyping input
     input:
-        rules.preprocessing.output
+        "variant_calling/variants/{barcode}.json"
     output:
-        expand("variant_calling/{targets}", targets=var_call.outputs)
-    params:
-        mod_dir = srcdir("modules/variant_calling"),
-        config = srcdir("config.yaml"),
-        out_dir = os.path.join(os.getcwd(), "variant_calling"),
-        laa_dir = os.path.join(os.getcwd(), "preprocessor/LAA")
+        "haplotyping/inputs/{barcode}.json"
     shell:
-        "cd {params.mod_dir} && "
-        "pipe-runner --directory {params.out_dir} --configfile {params.config} --extraconfig ALLELE_FASTA_FOLDER={params.laa_dir}"
+        "ln -s -r {input} {output}"
 
 
-rule haplotyping:
+# ----------------- rules for structural variation --------------------
+include: "modules/structural_variation/rules/lastdb.snake"
+include: "modules/structural_variation/rules/lastal.snake"
+include: "modules/structural_variation/rules/last_split.snake"
+include: "modules/structural_variation/rules/last_tab.snake"
+include: "modules/structural_variation/rules/last_region.snake"
+
+rule link_sources_sv:
+    # link the amplicon fastq to the sv input
     input:
-        rules.variant_calling.output
+        "preprocessor/LAA/{barcode}.fastq"
     output:
-        expand("haplotyping/{targets}", targets=haplotyper.outputs)
-    params:
-        mod_dir = srcdir("modules/haplotyping"),
-        config = srcdir("config.yaml"),
-        out_dir = os.path.join(os.getcwd(), "haplotyping"),
-        var_dir = os.path.join(os.getcwd(), "variant_calling/variants")
+        "structural_variation/inputs/{barcode}.fastq"
     shell:
-        "cd {params.mod_dir} && "
-        "pipe-runner --directory {params.out_dir} --configfile {params.config} --extraconfig VARIANT_DATA_PATH={params.var_dir}"
-
-
-rule structural_variation:
-    input:
-        rules.preprocessing.output
-    output:
-        expand("structural_variation/{targets}", targets=struct_var.outputs)
-    params:
-        mod_dir = srcdir("modules/structural_variation"),
-        config = srcdir("config.yaml"),
-        out_dir = os.path.join(os.getcwd(), "structural_variation"),
-        laa_dir = os.path.join(os.getcwd(), "preprocessor/LAA")
-    shell:
-        "cd {params.mod_dir} && "
-        "pipe-runner --directory {params.out_dir} --configfile {params.config} --extraconfig ALLELE_FASTQ_PATH={params.laa_dir}"
-
+        "ln -s -r {input} {output}"
