@@ -16,3 +16,6 @@
 [submodule "modules/structural_variation"]
 	path = modules/structural_variation
 	url = git@git.lumc.nl:PharmacogenomicsPipe/structural_variation.git
+[submodule "modules/variant_effects"]
+	path = modules/variant_effects
+	url = git@git.lumc.nl:PharmacogenomicsPipe/variant_effects.git
