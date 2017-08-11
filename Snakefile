@@ -12,6 +12,7 @@ preprocessing_params = PARAMS
 include: "modules/variant_calling/helper.snake"
 include: "modules/haplotyping/helper.snake"
 include: "modules/structural_variation/helper.snake"
+include: "modules/variant_effects/helper.snake"
 
 # don't submit the following rules to the cluster
 localrules:
@@ -20,7 +21,9 @@ localrules:
     barcoding_summary,
     link_sources_vc,
     link_sources_ht,
-    link_sources_sv
+    link_sources_sv,
+    link_sources_vep,
+    combine_vep
 
 
 # workflow outputs
@@ -29,7 +32,8 @@ rule all:
         preprocessing_params.outputs,
         VariantCallingHelper(config).outputs,
         HaplotypingHelper(config).outputs,
-        SVHelper(config).outputs
+        SVHelper(config).outputs,
+        VEPHelper(config).outputs
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -89,5 +93,20 @@ rule link_sources_sv:
         "preprocessor/LAA/{barcode}.fastq"
     output:
         "structural_variation/inputs/{barcode}.fastq"
+    shell:
+        "ln -s -r {input} {output}"
+
+
+# -------------------- rules for variant effects ----------------------
+include: "modules/variant_effects/rules/list_hgvs.snake"
+include: "modules/variant_effects/rules/run_vep.snake"
+include: "modules/variant_effects/rules/filter_vep.snake"
+include: "modules/variant_effects/rules/combine_vep.snake"
+
+rule link_sources_vep:
+    input:
+        "variant_calling/variants/{barcode}.json"
+    output:
+        "variant_effect/inputs/{barcode}.json"
     shell:
         "ln -s -r {input} {output}"
