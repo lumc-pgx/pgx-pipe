@@ -22,8 +22,7 @@ localrules:
     link_sources_vc,
     link_sources_ht,
     link_sources_sv,
-    link_sources_vep,
-    combine_vep
+    link_sources_vep
 
 
 # workflow outputs
@@ -98,10 +97,7 @@ rule link_sources_sv:
 
 
 # -------------------- rules for variant effects ----------------------
-include: "modules/variant_effects/rules/list_hgvs.snake"
-include: "modules/variant_effects/rules/run_vep.snake"
-include: "modules/variant_effects/rules/filter_vep.snake"
-include: "modules/variant_effects/rules/combine_vep.snake"
+include: "modules/variant_effects/rules/do_vep.snake"
 
 rule link_sources_vep:
     input:
@@ -110,3 +106,4 @@ rule link_sources_vep:
         "variant_effect/inputs/{barcode}.json"
     shell:
         "ln -s -r {input} {output}"
+

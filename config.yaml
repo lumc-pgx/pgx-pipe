@@ -40,11 +40,25 @@ STAGE_PARAMS:
     minPredictedAccuracy: 0.75
 
   CCS_CHECK:
+    # minimum qv score for including reads
     minQV: 0
+    # only display variants with a frequency >= minFreq
     minFreq: 0.02
+    # only display results for reads mapping to this chromosome
     chromosome: chr22
+    # display insertions / deletions?
     showIndel: False
+    # don't use reads less than minLength long
     minLength: 2000
     
   HAPLOTYPER:
+    # ignore variants at start/end of sequence when determining haplotypes
+    ignoreBoundary: True
+
+  VARIANT_EFFECT:
+    # The location of the folder containing cache files for use by vep
+    vep_cache_dir: /exports/genomes/species/H.sapiens/GRCh38/annotation/vep/88
+    # The version of the cache to be used
+    vep_cache_version: 88
+    # ignore variants at start/end of sequence?
     ignoreBoundary: True
