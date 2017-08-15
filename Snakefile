@@ -32,7 +32,8 @@ rule all:
         VariantCallingHelper(config).outputs,
         HaplotypingHelper(config).outputs,
         SVHelper(config).outputs,
-        VEPHelper(config).outputs
+        VEPHelper(config).outputs,
+        "summary/report.html"
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -107,3 +108,19 @@ rule link_sources_vep:
     shell:
         "ln -s -r {input} {output}"
 
+
+# --------------------------- reporting -------------------------------
+rule simple_summary:
+    input:
+        haplotypes = expand("haplotyping/haplotypes/{barcodes}.haplotype.txt", barcodes=PARAMS.barcode_ids),
+        matches = expand("haplotyping/matches/{barcodes}.matches.json", barcodes=PARAMS.barcode_ids),
+        vep = expand("variant_effect/vep/{barcodes}.json", barcodes=PARAMS.barcode_ids),
+        gene = config["GENE"]
+    output:
+        "summary/report.html"
+    params:
+        barcodes = PARAMS.barcode_ids
+    conda:
+        "envs/report.yaml"
+    script:
+        "scripts/simple_summary.py"
