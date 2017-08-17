@@ -59,7 +59,7 @@ def summarize_alleles(barcode):
         info["unknown"] = len(match["novel_variants"])
         info["significant"] = len(match["significant_variants"])
         info["total"] = info["known"] + info["unknown"]
-    
+        
         vep_effects = itertools.chain.from_iterable([v["vep"] for v in vep if v["sequence_id"] == allele])
         vep_filtered = [v for v in vep_effects if v["input"].split(".")[-1] in set(match["novel_variants"])]
     
@@ -75,10 +75,13 @@ def summarize_alleles(barcode):
         artifact = False
         disjoint = False
         if num_splits > 1:
-            # consider the allele an artifact if ~half of it aligns in one direction
-            # and ~half aligns to the same region in the other direction
+            # consider the allele an artifact if part of it aligns in one direction
+            # and part aligns to the other direction
             artifact = len(set(x[8] for x in last[allele])) > 1
-            disjoint = len(interval([int(x[6]), int(x[7])] for x in last[allele])) > 1
+            intervals = interval()
+            for split in last[allele]:
+                intervals |= interval([int(split[6]), int(split[7])])
+            disjoint = len(intervals) > 1
             
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
@@ -87,9 +90,15 @@ def summarize_alleles(barcode):
 
 
 allele_summary = []
+shade = True;
 for barcode in snakemake.params.barcodes:
-    for allele in summarize_alleles(barcode):
+    alleles = list(summarize_alleles(barcode))
+    for allele in alleles:
+        allele["shade"] = "dark" if shade else "light"
         allele_summary.append(allele)
+    
+    if len(alleles) > 0:
+        shade = not shade
 
 j2_env = Environment(loader=FileSystemLoader(os.path.dirname(snakemake.input.template)),
                      trim_blocks=True)
