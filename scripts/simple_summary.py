@@ -1,71 +1,12 @@
+import os
 import json
 import locus_processing
-from jinja2 import Environment
+from jinja2 import Environment, FileSystemLoader
 import itertools
 from collections import Counter
 import datetime
-
-HTML = """
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-    th, td {
-        text-align: center;
-        padding: 2px 10px;
-    }
-    tr, td {
-        white-space: nowrap;
-    }
-    .allele {
-        text-align: left;
-    }
-</style>
-    <meta charset="utf-8"/>
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <h2>Run data:</h2>
-    <ul>
-    {% for source in sources %}
-        <li>{{ source }}</li>
-    {% endfor %}
-    </ul>
-    <h2>Gene: {{ gene }}</h2>
-    <h2>Allele Summary</h2>
-    <table>
-        <tr>
-            <th>Allele</th>
-            <th>Assignment</th>
-            <th>Variants</th>
-            <th>Significant</th>
-            <th>Known</th>
-            <th>Novel</th>
-            <th>Sift <br>(deleterious)</th>
-            <th>Polyphen <br> (*damaging)</th>
-        </tr>
-    {% for item in summary %}
-        <tr>
-            <td class='allele'>{{ item['id'] }}</td>
-            <td>{{ item['assignment'] }}</td>
-            <td>{{ item['total'] }}</td>
-            <td>{{ item['significant'] }}</td>
-            <td>{{ item['known'] }}</td>
-            <td>{{ item['unknown'] }}</td>
-            <td>{{ item['sift'] }}</td>
-            <td>{{ item['poly'] }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-    <br><br>
-    <footer>
-        Creation timestamp: {{ timestamp }}
-    </footer>
-</body>
-</html>
-"""
-
+from collections import defaultdict
+from interval import interval
 
 def load_alleles(filename):
     # load the haplotype assignments into a dictionary, using allele id as key
@@ -88,13 +29,26 @@ def load_vep(filename):
     with open(filename, "r") as infile:
         vep = json.load(infile)
     return vep
-        
+
+def load_last(filename):
+    # load the regions from sv module into a dict indexed by allele id
+    last = defaultdict(list)
+    with open(filename, "r") as infile:
+        for line in infile:
+            line = line.strip()
+            if line.startswith('#') or len(line) == 0:
+                continue
+            fields = [x.strip() for x in line.split("\t")]
+            last[fields[0]].append(fields[1:])
+    return last
+
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
 
 def summarize_alleles(barcode):
     alleles = load_alleles(next(f for f in snakemake.input.haplotypes if barcode in f))
     matches = load_matches(next(f for f in snakemake.input.matches if barcode in f))
     vep = load_vep(next(f for f in snakemake.input.vep if barcode in f))
+    last = load_last(next(f for f in snakemake.input.last if barcode in f))
     
     for allele in alleles:
         info = {}
@@ -116,6 +70,18 @@ def summarize_alleles(barcode):
     
         info["sift"] = len(sift)
         info["poly"] = len(poly)
+        
+        num_splits = len(last[allele])
+        artifact = False
+        disjoint = False
+        if num_splits > 1:
+            # consider the allele an artifact if ~half of it aligns in one direction
+            # and ~half aligns to the same region in the other direction
+            artifact = len(set(x[8] for x in last[allele])) > 1
+            disjoint = len(interval([int(x[6]), int(x[7])] for x in last[allele])) > 1
+            
+        info["artifact"] = "1" if artifact else "0"
+        info["disjoint"] = "1" if disjoint else "0"
     
         yield info
 
@@ -124,10 +90,15 @@ allele_summary = []
 for barcode in snakemake.params.barcodes:
     for allele in summarize_alleles(barcode):
         allele_summary.append(allele)
-        
+
+j2_env = Environment(loader=FileSystemLoader(os.path.dirname(snakemake.input.template)),
+                     trim_blocks=True)
+
+j2_template = j2_env.get_template(os.path.basename(snakemake.input.template))
+
 with open(snakemake.output[0], "w") as outfile:
     print(
-        Environment().from_string(HTML).render(
+        j2_template.render(
             title="Pharmacogenomics Pipeline Report",
             gene=gene.name,
             sources = snakemake.config["SOURCE_DATA_PATHS"],

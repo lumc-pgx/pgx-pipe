@@ -115,7 +115,9 @@ rule simple_summary:
         haplotypes = expand("haplotyping/haplotypes/{barcodes}.haplotype.txt", barcodes=PARAMS.barcode_ids),
         matches = expand("haplotyping/matches/{barcodes}.matches.json", barcodes=PARAMS.barcode_ids),
         vep = expand("variant_effect/vep/{barcodes}.json", barcodes=PARAMS.barcode_ids),
-        gene = config["GENE"]
+        last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
+        gene = config["GENE"],
+        template = srcdir("templates/simple.html")
     output:
         "summary/report.html"
     params:
