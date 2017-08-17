@@ -10,16 +10,16 @@ HTML = """
 <html>
 <head>
 <style>
-th, td {
-    text-align: center;
-    padding: 2px 10px;
-}
-tr, td {
-    white-space: nowrap;
-}
-.allele {
-    text-align: left;
-}
+    th, td {
+        text-align: center;
+        padding: 2px 10px;
+    }
+    tr, td {
+        white-space: nowrap;
+    }
+    .allele {
+        text-align: left;
+    }
 </style>
     <meta charset="utf-8"/>
     <title>{{ title }}</title>
