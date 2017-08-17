@@ -34,3 +34,8 @@ lastdb:
 lastal:
   threads: 1
   vmem: 16G 
+
+# Parameters for variant calling
+variants:
+  threads: 1
+  vmem: 8G
