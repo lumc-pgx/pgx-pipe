@@ -126,3 +126,17 @@ rule haplotype_summary:
         "envs/report.yaml"
     script:
         "scripts/haplotype_summary.py"
+
+rule deletion_summary:
+    input:
+        last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
+        gene = config["GENE"],
+        template = srcdir("templates/deletions.html")
+    output:
+        "summary/deletion_report.html"
+    params:
+        barcodes = PARAMS.barcode_ids
+    conda:
+        "envs/report.yaml"
+    script:
+        "scripts/deletion_summary.py"

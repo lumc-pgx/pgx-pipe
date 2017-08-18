@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                border: none;
+            }
+            th, td {
+                text-align: center;
+                padding: 2px 10px;
+            }
+            tr, td {
+                white-space: nowrap;
+            }
+            .allele {
+                text-align: left;
+            }
+            .light {
+                background-color: white;
+            }
+            .dark {
+                background-color: Gainsboro;
+            }
+        </style>
+        <meta charset="utf-8"/>
+        <title>{{ title }}</title>
+    </head>
+    
+    <body>
+        <h1>{{ title }}</h1>
+        <h2>Run data:</h2>
+        
+        <ul>
+        {% for source in sources %}
+            <li>{{ source }}</li>
+        {% endfor %}
+        </ul>
+        
+        <h2>Gene: {{ gene }}</h2>
+        <h2>Allele Summary</h2>
+        
+        <table>
+            <tr>
+                <th>Allele</th>
+                <th>Artifact</th>
+                <th>Disjoint</th>
+                <th>Gaps</th>
+            </tr>
+        {% for item in summary %}
+            <tr class='{{ item.shade }}'>
+                <td class='allele'>{{ item['id'] }}</td>
+                <td>{{ item['artifact'] }}</td>
+                <td>{{ item['disjoint'] }}</td>
+                <td>{{ item['gaps'] }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        
+        <br><br>
+        
+        <footer>
+            Creation timestamp: {{ timestamp }}
+        </footer>
+    
+    </body>
+</html>
