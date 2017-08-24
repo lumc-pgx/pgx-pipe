@@ -5,8 +5,8 @@ __default__:
 
 # Parameters specific to LAA
 laa:
-  threads: 2
-  vmem: 12G
+  threads: "{threads}"
+  vmem: "{resources.memory}G"
 
 # parameters specific to CCS
 ccs:
