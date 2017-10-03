@@ -4,7 +4,11 @@ __default__:
   vmem: 4G
 
 # Parameters specific to LAA
-laa:
+laa_1:
+  threads: "{threads}"
+  vmem: "{resources.memory}G"
+
+laa_2:
   threads: "{threads}"
   vmem: "{resources.memory}G"
 
