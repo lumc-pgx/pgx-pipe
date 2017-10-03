@@ -24,6 +24,9 @@ SMRTCMD_PATH: /usr/local/smrtlink/smrtcmds/bin
 # Path to the ccs_check tool
 CCS_CHECK_PATH: /usr/local/ccscheck/bin
 
+# Two-stage LAA
+POLISH_LAA: True
+
 # params for individual stages
 # to disable a stage, remove its parameters
 STAGE_PARAMS:
