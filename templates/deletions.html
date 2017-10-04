@@ -52,7 +52,11 @@
                 <td class='allele'>{{ item['id'] }}</td>
                 <td>{{ item['artifact'] }}</td>
                 <td>{{ item['disjoint'] }}</td>
-                <td>{{ item['gaps'] }}</td>
+                <td>
+                    {% for gap in item['gaps'] %}
+                        {{ gap }}<br>
+                    {% endfor %}
+                </td>
             </tr>
         {% endfor %}
         </table>

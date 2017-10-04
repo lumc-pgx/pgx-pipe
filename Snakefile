@@ -33,7 +33,8 @@ rule all:
         HaplotypingHelper(config).outputs,
         SVHelper(config).outputs,
         VEPHelper(config).outputs,
-        "summary/haplotype_report.html"
+        "summary/haplotype_report.html",
+        "summary/deletion_report.html"
 
 
 # -------------- rules for preprocessing workflow ---------------------

@@ -55,7 +55,7 @@ def summarize_alleles(barcode):
             
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
-        info["gaps"] = ",".join(gaps)
+        info["gaps"] = gaps #",".join(gaps)
     
         yield info
 
