@@ -34,7 +34,8 @@ rule all:
         SVHelper(config).outputs,
         VEPHelper(config).outputs,
         "summary/haplotype_report.html",
-        "summary/deletion_report.html"
+        "summary/deletion_report.html",
+        "summary/config_report.html"
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -142,3 +143,13 @@ rule deletion_summary:
         "envs/report.yaml"
     script:
         "scripts/deletion_summary.py"
+
+rule config_summary:
+    input:
+        template = srcdir("templates/config.html")
+    output:
+        "summary/config_report.html"
+    conda:
+        "envs/report.yaml"
+    script:
+        "scripts/config_summary.py"
