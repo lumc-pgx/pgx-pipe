@@ -3,6 +3,9 @@ import os
 include: "modules/preprocessor/helper.snake"
 PARAMS = PreprocessingHelper(config, "Pugwash Pharmacogenomics")
 
+if len(config["LOCI"]) > 1:
+    raise WorkflowError("Multiple loci not yet supported")
+
 onsuccess: PARAMS.onsuccess()
 onerror: PARAMS.onerror()
 
@@ -33,9 +36,9 @@ rule all:
         HaplotypingHelper(config).outputs,
         SVHelper(config).outputs,
         VEPHelper(config).outputs,
-        "summary/haplotype_report.html",
-        "summary/deletion_report.html",
-        "summary/config_report.html"
+        "summary/{}/haplotype_report.html".format(list(PARAMS.genes)[0]),
+        "summary/{}/deletion_report.html".format(list(PARAMS.genes)[0]),
+        "summary/{}/config_report.html".format(list(PARAMS.genes)[0])
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -63,7 +66,7 @@ rule link_sources_vc:
     input:
         "preprocessor/LAA/{barcode}.fasta"
     output:
-        "variant_calling/inputs/{barcode}.fasta"
+        "variant_calling/inputs/{gene}/{barcode}.fasta"
     shell:
         "ln -s -r {input} {output}"
 
@@ -76,9 +79,9 @@ include: "modules/haplotyping/rules/pick.snake"
 rule link_sources_ht:
     # link the variant calling output to the haplotyping input
     input:
-        "variant_calling/variants/{barcode}.json"
+        "variant_calling/variants/{gene}/{barcode}.json"
     output:
-        "haplotyping/inputs/{barcode}.json"
+        "haplotyping/inputs/{gene}/{barcode}.json"
     shell:
         "ln -s -r {input} {output}"
 
@@ -105,9 +108,9 @@ include: "modules/variant_effects/rules/do_vep.snake"
 
 rule link_sources_vep:
     input:
-        "variant_calling/variants/{barcode}.json"
+        "variant_calling/variants/{gene}/{barcode}.json"
     output:
-        "variant_effect/inputs/{barcode}.json"
+        "variant_effect/inputs/{gene}/{barcode}.json"
     shell:
         "ln -s -r {input} {output}"
 
@@ -115,14 +118,14 @@ rule link_sources_vep:
 # --------------------------- reporting -------------------------------
 rule haplotype_summary:
     input:
-        haplotypes = expand("haplotyping/haplotypes/{barcodes}.haplotype.txt", barcodes=PARAMS.barcode_ids),
-        matches = expand("haplotyping/matches/{barcodes}.matches.json", barcodes=PARAMS.barcode_ids),
-        vep = expand("variant_effect/vep/{barcodes}.json", barcodes=PARAMS.barcode_ids),
+        haplotypes = expand("haplotyping/haplotypes/{{gene}}/{barcodes}.haplotype.txt", barcodes=PARAMS.barcode_ids),
+        matches = expand("haplotyping/matches/{{gene}}/{barcodes}.matches.json", barcodes=PARAMS.barcode_ids),
+        vep = expand("variant_effect/vep/{{gene}}/{barcodes}.json", barcodes=PARAMS.barcode_ids),
         last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
-        gene = config["GENE"],
+        gene = config["LOCI"][0],
         template = srcdir("templates/haplotypes.html")
     output:
-        "summary/haplotype_report.html"
+        "summary/{gene}/haplotype_report.html"
     params:
         barcodes = PARAMS.barcode_ids
     conda:
@@ -133,10 +136,10 @@ rule haplotype_summary:
 rule deletion_summary:
     input:
         last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
-        gene = config["GENE"],
+        gene = config["LOCI"][0],
         template = srcdir("templates/deletions.html")
     output:
-        "summary/deletion_report.html"
+        "summary/{gene}/deletion_report.html"
     params:
         barcodes = PARAMS.barcode_ids
     conda:
@@ -148,7 +151,7 @@ rule config_summary:
     input:
         template = srcdir("templates/config.html")
     output:
-        "summary/config_report.html"
+        "summary/{gene}/config_report.html"
     conda:
         "envs/report.yaml"
     script:
