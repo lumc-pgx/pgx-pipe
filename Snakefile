@@ -7,7 +7,7 @@ if len(config["LOCI"]) > 1:
     raise WorkflowError("Multiple loci not yet supported")
 
 onsuccess: PARAMS.onsuccess()
-onerror: PARAMS.onerror()
+onerror: PARAMS.onerror(log)
 
 preprocessing_params = PARAMS
 
