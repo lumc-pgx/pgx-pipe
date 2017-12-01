@@ -118,8 +118,7 @@ rule link_sources_vep:
 # --------------------------- reporting -------------------------------
 rule haplotype_summary:
     input:
-        haplotypes = expand("haplotyping/haplotypes/{{gene}}/{barcodes}.haplotype.txt", barcodes=PARAMS.barcode_ids),
-        matches = expand("haplotyping/matches/{{gene}}/{barcodes}.matches.json", barcodes=PARAMS.barcode_ids),
+        haplotypes = expand("haplotyping/haplotypes/{{gene}}/{barcodes}.haplotype.json", barcodes=PARAMS.barcode_ids),
         vep = expand("variant_effect/vep/{{gene}}/{barcodes}.json", barcodes=PARAMS.barcode_ids),
         last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
         gene = config["LOCI"][0],

@@ -8,27 +8,20 @@ import datetime
 from collections import defaultdict
 from interval import interval
 
+
 def load_alleles(filename):
-    # load the haplotype assignments into a dictionary, using allele id as key
+    # load the haplotypes json file
     with open(filename, "r") as infile:
-        alleles = {}
-        for line in infile:
-            line = [x.strip() for x in line.split("\t")]
-            if len(line) > 0:
-                alleles[line[0]] = " ".join(line[1:])
+        alleles = json.load(infile)
     return alleles
 
-def load_matches(filename):
-    # load the matches json file
-    with open(filename, "r") as infile:
-        matches = json.load(infile)
-    return matches
 
 def load_vep(filename):
     # load the vep json file
     with open(filename, "r") as infile:
         vep = json.load(infile)
     return vep
+
 
 def load_last(filename):
     # load the regions from sv module into a dict indexed by allele id
@@ -42,26 +35,27 @@ def load_last(filename):
             last[fields[0]].append(fields[1:])
     return last
 
+
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
+
 
 def summarize_alleles(barcode):
     alleles = load_alleles(next(f for f in snakemake.input.haplotypes if barcode in f))
-    matches = load_matches(next(f for f in snakemake.input.matches if barcode in f))
     vep = load_vep(next(f for f in snakemake.input.vep if barcode in f))
     last = load_last(next(f for f in snakemake.input.last if barcode in f))
     
     for allele in alleles:
         info = {}
-        info["id"] = allele
-        info["assignment"] = alleles[allele]
-        match = next(m for m in matches if m["sequence_id"] == allele)
-        info["known"] = len(match["known_variants"])
-        info["unknown"] = len(match["novel_variants"])
-        info["significant"] = len(match["significant_variants"])
+        info["id"] = allele["sequence_id"]
+        info["assignment"] = " ".join(allele["haplotype"])
+        match = allele["haplotypes"]
+        info["known"] = len([v for v in allele["variants"] if "known" in v["tags"]])
+        info["unknown"] = len([v for v in allele["variants"] if "novel" in v["tags"]])
+        info["significant"] = len([v for v in allele["variants"] if "significant" in v["tags"]])
         info["total"] = info["known"] + info["unknown"]
         
-        vep_effects = itertools.chain.from_iterable([v["vep"] for v in vep if v["sequence_id"] == allele])
-        vep_filtered = [v for v in vep_effects if v["input"].split(".")[-1] in set(match["novel_variants"])]
+        vep_effects = itertools.chain.from_iterable([v["vep"] for v in vep if v["sequence_id"] == allele["sequence_id"]])
+        vep_filtered = [v for v in vep_effects if v["input"].split(".")[-1] in set(v["g_notation"] for v in allele["variants"] if "novel" in v["tags"])]
     
         consequences = [v["transcript_consequences"][0] for v in vep_filtered]
     
@@ -71,15 +65,16 @@ def summarize_alleles(barcode):
         info["sift"] = len(sift)
         info["poly"] = len(poly)
         
-        num_splits = len(last[allele])
+        allele_id = allele["sequence_id"]
+        num_splits = len(last[allele_id])
         artifact = False
         disjoint = False
         if num_splits > 1:
             # consider the allele an artifact if part of it aligns in one direction
             # and part aligns to the other direction
-            artifact = len(set(x[8] for x in last[allele])) > 1
+            artifact = len(set(x[8] for x in last[allele_id])) > 1
             intervals = interval()
-            for split in last[allele]:
+            for split in last[allele_id]:
                 intervals |= interval([int(split[6]), int(split[7])])
             disjoint = len(intervals) > 1
             
