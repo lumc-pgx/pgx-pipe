@@ -17,6 +17,9 @@ BARCODES: /path/to/barcodes.fasta
 # The location of this file should be writable so that indexes can be created
 GENOME: /path/to/genome.fasta
 
+# Path to the ensembl annotation file for the genome
+ANNOTATIONS: /path/to/ensembl/annotations.gtf
+
 # path to the gene definition file(s)
 LOCI:
   - /path/to/locus/definition/file
