@@ -38,7 +38,8 @@ rule all:
         VEPHelper(config).outputs,
         "summary/{}/haplotype_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/deletion_report.html".format(list(PARAMS.genes)[0]),
-        "summary/{}/config_report.html".format(list(PARAMS.genes)[0])
+        "summary/{}/config_report.html".format(list(PARAMS.genes)[0]),
+        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids)
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -155,3 +156,43 @@ rule config_summary:
         "envs/report.yaml"
     script:
         "scripts/config_summary.py"
+
+rule basic_annotations:
+    input:
+        config["ANNOTATIONS"]
+    output:
+        "annotations/{}.basic.gtf".format(os.path.splitext(os.path.basename(config["ANNOTATIONS"]))[0])
+    shell:
+        """
+        grep $'\tgene\t\|tag "basic";' {input} > {output} 
+        """
+
+rule annotation_db:
+    input:
+        "annotations/{}.basic.gtf".format(os.path.splitext(os.path.basename(config["ANNOTATIONS"]))[0])
+    output:
+        "annotations/{}.basic.gtf.sqlite".format(os.path.splitext(os.path.basename(config["ANNOTATIONS"]))[0])
+    params:
+        # params to pass to gffutils createdb
+        # these are the recommended parameters for a gencode annotation gtf
+        # see https://daler.github.io/gffutils/examples.html#gencode-v19-gtf
+        keep_order=True,
+        disable_infer_genes=True,
+        disable_infer_transcripts=True
+    conda:
+        "envs/annotations.yaml"
+    script:
+        "scripts/annotation_db.py"
+
+rule sv_visualization:
+    input: 
+        annotations = rules.annotation_db.output[0],
+        alignments = "structural_variation/last_region/{barcode}.txt",
+        splits = "structural_variation/last_split/{barcode}.maf"
+    output:
+        "summary/{gene}/structure/{barcode}.html"
+    conda:
+        "envs/sv_viz.yaml"
+    script:
+        "scripts/sv_report.py"
+        
