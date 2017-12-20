@@ -187,7 +187,8 @@ rule annotation_db:
 rule sv_visualization:
     input: 
         annotations = rules.annotation_db.output[0],
-        alignments = "structural_variation/last_region/{barcode}.txt"
+        alignments = "structural_variation/last_region/{barcode}.txt",
+        splits = "structural_variation/last_split/{barcode}.maf"
     output:
         "summary/{gene}/structure/{barcode}.html"
     conda:
