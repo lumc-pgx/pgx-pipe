@@ -52,6 +52,7 @@
                 <th>Polyphen <br> (*damaging)</th>
                 <th>Artifact</th>
                 <th>Disjoint</th>
+                <th>ChimeraScore</th>
             </tr>
         {% for item in summary %}
             <tr class='{{ item.shade }}'>
@@ -65,6 +66,7 @@
                 <td>{{ item['poly'] }}</td>
                 <td>{{ item['artifact'] }}</td>
                 <td>{{ item['disjoint'] }}</td>
+                <td>{{ item['chimera_score'] }}</td>
             </tr>
         {% endfor %}
         </table>

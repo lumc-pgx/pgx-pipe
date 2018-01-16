@@ -7,6 +7,7 @@ from collections import Counter
 import datetime
 from collections import defaultdict
 from interval import interval
+import csv
 
 
 def load_alleles(filename):
@@ -34,6 +35,13 @@ def load_last(filename):
             fields = [x.strip() for x in line.split("\t")]
             last[fields[0]].append(fields[1:])
     return last
+    
+
+def load_laa_summary(filename):
+    # load the chimera score for each allele from the laa amplicon summary file
+    with open(filename, "r") as infile:
+        laa_summary = csv.DictReader(infile)
+        return {row["FastaName"]: row["ChimeraScore"] for row in laa_summary}
 
 
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
@@ -43,6 +51,7 @@ def summarize_alleles(barcode):
     alleles = load_alleles(next(f for f in snakemake.input.haplotypes if barcode in f))
     vep = load_vep(next(f for f in snakemake.input.vep if barcode in f))
     last = load_last(next(f for f in snakemake.input.last if barcode in f))
+    chimeras = load_laa_summary(next(f for f in snakemake.input.laa_allele_summary if barcode in f))
     
     for allele in alleles:
         info = {}
@@ -80,7 +89,7 @@ def summarize_alleles(barcode):
             
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
-    
+        info["chimera_score"] = chimeras[allele_id]
         yield info
 
 
