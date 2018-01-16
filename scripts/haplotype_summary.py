@@ -7,7 +7,7 @@ from collections import Counter
 import datetime
 from collections import defaultdict
 from interval import interval
-import csv
+import pandas as pd
 
 
 def load_alleles(filename):
@@ -38,21 +38,27 @@ def load_last(filename):
     
 
 def load_laa_summary(filename):
-    # load the chimera score for each allele from the laa amplicon summary file
-    with open(filename, "r") as infile:
-        laa_summary = csv.DictReader(infile)
-        return {row["FastaName"]: row["ChimeraScore"] for row in laa_summary}
+    # load the laa amplicon summary file into a dataframe
+    return pd.read_csv(filename)
 
 
 def load_subread_summary(filename):
     # load subread summary and determine number of molecules per allele
-    with open(filename, "r") as infile:
-        subread_summary = csv.DictReader(infile)
-        mols = defaultdict(set)
-        for row in subread_summary:
-            allele = next(f for f in subread_summary.fieldnames if f != "SubreadId" and float(row[f]) > 0.5)
-            mols[allele].add("/".join(row["SubreadId"].split("/")[:2]))
-    return {allele_id: len(mols[allele_id]) for allele_id in mols}
+    try:
+        data = pd.read_csv(filename)
+    except pd.errors.EmptyDataError:
+        return dict()
+
+    alleles = list(data.columns[1:])
+    data["molecules"] = data["SubreadId"].map(lambda x: "/".join(x.split("/")[:-1]))
+
+    counts = defaultdict(int)
+
+    for allele in alleles:
+        data[allele] = data[allele].astype(float)
+        counts[allele] = len(set(data[data[allele] > 0.5]["molecules"]))
+
+    return counts
 
 
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
@@ -62,7 +68,7 @@ def summarize_alleles(barcode):
     alleles = load_alleles(next(f for f in snakemake.input.haplotypes if barcode in f))
     vep = load_vep(next(f for f in snakemake.input.vep if barcode in f))
     last = load_last(next(f for f in snakemake.input.last if barcode in f))
-    chimeras = load_laa_summary(next(f for f in snakemake.input.laa_allele_summary if barcode in f))
+    chimera_df = load_laa_summary(next(f for f in snakemake.input.laa_allele_summary if barcode in f))
     molecules = load_subread_summary(next(f for f in snakemake.input.laa_subread_summary if barcode in f))
     
     for allele in alleles:
@@ -98,12 +104,14 @@ def summarize_alleles(barcode):
             for split in last[allele_id]:
                 intervals |= interval([int(split[6]), int(split[7])])
             disjoint = len(intervals) > 1
-            
+
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
-        info["chimera_score"] = chimeras[allele_id]
+
+        chimera_score = float(chimera_df[chimera_df.FastaName == allele_id]["ChimeraScore"])
+        info["chimera_score"] = "{0:.3f}".format(chimera_score) if chimera_score > 0 else "{0:.0f}".format(chimera_score)
         info["molecules"] = molecules[allele_id]
-        
+
         yield info
 
 
