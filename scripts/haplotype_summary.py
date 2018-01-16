@@ -44,6 +44,17 @@ def load_laa_summary(filename):
         return {row["FastaName"]: row["ChimeraScore"] for row in laa_summary}
 
 
+def load_subread_summary(filename):
+    # load subread summary and determine number of molecules per allele
+    with open(filename, "r") as infile:
+        subread_summary = csv.DictReader(infile)
+        mols = defaultdict(set)
+        for row in subread_summary:
+            allele = next(f for f in subread_summary.fieldnames if f != "SubreadId" and float(row[f]) > 0.5)
+            mols[allele].add("/".join(row["SubreadId"].split("/")[:2]))
+    return {allele_id: len(mols[allele_id]) for allele_id in mols}
+
+
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
 
 
@@ -52,6 +63,7 @@ def summarize_alleles(barcode):
     vep = load_vep(next(f for f in snakemake.input.vep if barcode in f))
     last = load_last(next(f for f in snakemake.input.last if barcode in f))
     chimeras = load_laa_summary(next(f for f in snakemake.input.laa_allele_summary if barcode in f))
+    molecules = load_subread_summary(next(f for f in snakemake.input.laa_subread_summary if barcode in f))
     
     for allele in alleles:
         info = {}
@@ -90,6 +102,8 @@ def summarize_alleles(barcode):
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
         info["chimera_score"] = chimeras[allele_id]
+        info["molecules"] = molecules[allele_id]
+        
         yield info
 
 
