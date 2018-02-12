@@ -47,16 +47,36 @@ def load_subread_summary(filename):
     try:
         data = pd.read_csv(filename)
     except pd.errors.EmptyDataError:
-        return dict()
+        return dict(), dict()
 
     alleles = list(data.columns[1:])
     data["molecules"] = data["SubreadId"].map(lambda x: "/".join(x.split("/")[:-1]))
-
-    counts = defaultdict(int)
-
+    
+    # make sure allele column contains 1 or 0
     for allele in alleles:
-        data[allele] = data[allele].astype(float)
-        counts[allele] = len(set(data[data[allele] > 0.5]["molecules"]))
+        data[allele] = data[allele].astype(float).map(lambda x: 1 if x > 0.5 else 0)
+    
+    allele_molecules = defaultdict(set)
+    for allele in alleles:
+        allele_molecules[allele] = set(data[data[allele] == 1]["molecules"])
+    
+    counts = dict()
+    
+    # identify molecules which contribute to multiple alleles
+    for a1 in allele_molecules:
+        other = set()
+        for a2 in allele_molecules:
+            if a1 != a2:
+                other |= allele_molecules[a2]
+        
+        total = len(allele_molecules[a1])
+        shared = len(allele_molecules[a1] & other)
+        try:
+            fraction = (total - shared) / total
+        except ZeroDivisionError:
+            fraction = 0
+    
+        counts[a1] = {"total": total, "shared": shared, "fraction": fraction}
 
     return counts
 
@@ -110,7 +130,10 @@ def summarize_alleles(barcode):
 
         chimera_score = float(chimera_df[chimera_df.FastaName == allele_id]["ChimeraScore"])
         info["chimera_score"] = "{0:.3f}".format(chimera_score) if chimera_score > 0 else "{0:.0f}".format(chimera_score)
-        info["molecules"] = molecules[allele_id]
+        info["molecules"] = molecules[allele_id]["total"]
+        info["shared"] = molecules[allele_id]["shared"]
+        fraction = molecules[allele_id]["fraction"]
+        info["fraction"] = "{0:.3f}".format(fraction) if fraction > 0 else "{0:.0f}".format(fraction)
 
         yield info
 

@@ -30,6 +30,9 @@ SMRTCMD_PATH: /usr/local/smrtlink/smrtcmds/bin
 # Path to the ccs_check tool
 CCS_CHECK_PATH: /usr/local/ccscheck/bin
 
+# Path to the LIMA barcoding tool
+LIMA_PATH: /home/wgallard/bin/lima
+
 # Enable two-stage LAA
 POLISH_LAA: True
 
@@ -71,3 +74,9 @@ STAGE_PARAMS:
     vep_cache_version: 88
     # ignore variants at start/end of sequence?
     ignoreBoundary: True
+  
+  LIMA:
+    same: True           # symmetric barcoding
+    num-threads: 4       # number of threads
+    dump-clips: True     # save the clipped adapters
+    no-pbi: True         # don't generate bam index

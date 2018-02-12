@@ -3,6 +3,11 @@ __default__:
   threads: 1
   vmem: 4G
 
+# Parameters for barcoding
+barcoding:
+  threads: "{threads}"
+  vmem: 2G
+  
 # Parameters specific to LAA
 laa_1:
   threads: "{threads}"
@@ -11,7 +16,7 @@ laa_1:
 laa_2:
   threads: "{threads}"
   vmem: "{resources.memory}G"
-
+  
 # parameters specific to CCS
 ccs:
   threads: 2
