@@ -54,6 +54,8 @@
                 <th>Disjoint</th>
                 <th>ChimeraScore</th>
                 <th>Molecules</th>
+                <th>Shared</th>
+                <th>Unique %</th>
             </tr>
         {% for item in summary %}
             <tr class='{{ item.shade }}'>
@@ -69,6 +71,8 @@
                 <td>{{ item['disjoint'] }}</td>
                 <td>{{ item['chimera_score'] }}</td>
                 <td>{{ item['molecules'] }}</td>
+                <td>{{ item['shared'] }}</td>
+                <td>{{ item['fraction'] }}</td>
             </tr>
         {% endfor %}
         </table>

@@ -25,7 +25,11 @@ localrules:
     link_sources_vc,
     link_sources_ht,
     link_sources_sv,
-    link_sources_vep
+    link_sources_vep,
+    matches,
+    pick,
+    tabulate,
+    laa_whitelist
 
 
 # workflow outputs
@@ -45,7 +49,6 @@ rule all:
 # -------------- rules for preprocessing workflow ---------------------
 include: "modules/preprocessor/rules/source_data.snake"
 include: "modules/preprocessor/rules/barcoding.snake"
-include: "modules/preprocessor/rules/barcoding_summary.snake"
 include: "modules/preprocessor/rules/merge_subreadset.snake"
 include: "modules/preprocessor/rules/demultiplex.snake"
 include: "modules/preprocessor/rules/consolidate_xml.snake"
