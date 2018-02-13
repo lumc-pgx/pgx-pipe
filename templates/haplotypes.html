@@ -56,6 +56,8 @@
                 <th>Molecules</th>
                 <th>Shared</th>
                 <th>Unique %</th>
+                <th>Good %</th>
+                <th>Chimera %</th>
             </tr>
         {% for item in summary %}
             <tr class='{{ item.shade }}'>
@@ -73,6 +75,10 @@
                 <td>{{ item['molecules'] }}</td>
                 <td>{{ item['shared'] }}</td>
                 <td>{{ item['fraction'] }}</td>
+                {% if 'good' in item %}
+                    <td rowspan='{{ item.num_alleles }}'>{{ item['good'] }}</td>
+                    <td rowspan='{{ item.num_alleles }}'>{{ item['chimera'] }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
         </table>

@@ -81,6 +81,10 @@ def load_subread_summary(filename):
     return counts
 
 
+def load_laa_inputs(filename):
+    # load the laa input summary file into a dataframe
+    return pd.read_csv(filename)
+
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
 
 
@@ -90,9 +94,15 @@ def summarize_alleles(barcode):
     last = load_last(next(f for f in snakemake.input.last if barcode in f))
     chimera_df = load_laa_summary(next(f for f in snakemake.input.laa_allele_summary if barcode in f))
     molecules = load_subread_summary(next(f for f in snakemake.input.laa_subread_summary if barcode in f))
+    inputs = load_laa_inputs(next(f for f in snakemake.input.laa_input_summary if barcode in f))
+    
+    good = float(inputs[inputs["Barcode"] == "All"]["Good(%)"])
+    chimera = float(inputs[inputs["Barcode"] == "All"]["Chimera(%)"])
+    num_alleles = len(alleles)
+    first = True
     
     for allele in alleles:
-        info = {}
+        info = {}        
         info["id"] = allele["sequence_id"]
         info["assignment"] = " ".join(allele["haplotype"])
         match = allele["haplotypes"]
@@ -135,6 +145,12 @@ def summarize_alleles(barcode):
         fraction = molecules[allele_id]["fraction"]
         info["fraction"] = "{0:.3f}".format(fraction) if fraction > 0 else "{0:.0f}".format(fraction)
 
+        if first:
+            info["good"] = "{0:.1f}".format(good)
+            info["chimera"] = "{0:.1f}".format(chimera)
+            info["num_alleles"] = num_alleles
+            first = False
+            
         yield info
 
 

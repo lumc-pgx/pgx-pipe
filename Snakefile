@@ -128,7 +128,8 @@ rule haplotype_summary:
         gene = config["LOCI"][0],
         template = srcdir("templates/haplotypes.html"),
         laa_allele_summary = expand("preprocessor/LAA/{barcodes}_summary.csv", barcodes=PARAMS.barcode_ids),
-        laa_subread_summary = expand("preprocessor/LAA/subreads.{barcodes}--{barcodes}.csv", barcodes=PARAMS.barcode_ids)
+        laa_subread_summary = expand("preprocessor/LAA/subreads.{barcodes}--{barcodes}.csv", barcodes=PARAMS.barcode_ids),
+        laa_input_summary = expand("preprocessor/LAA/{barcodes}_input.csv", barcodes=PARAMS.barcode_ids)
     output:
         "summary/{gene}/haplotype_report.html"
     params:
