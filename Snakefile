@@ -43,7 +43,10 @@ rule all:
         "summary/{}/haplotype_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/deletion_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/config_report.html".format(list(PARAMS.genes)[0]),
-        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids)
+        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
+
+if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
+    rules.all.input.append("summary/{}/missed_variants.txt".format(list(PARAMS.genes)[0]))
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -162,6 +165,19 @@ rule config_summary:
         "envs/report.yaml"
     script:
         "scripts/config_summary.py"
+
+rule missed_variants:
+    input:
+        haplotypes = expand("haplotyping/haplotypes/{{gene}}/{barcodes}.haplotype.json", barcodes=PARAMS.barcode_ids),
+        ccs_check = expand("preprocessor/summary/ccs_check/{barcodes}.csv", barcodes=PARAMS.barcode_ids),
+        gene = config["LOCI"][0]
+    output:
+        "summary/{gene}/missed_variants.txt"
+    params:
+        threshold=0.2,
+        barcodes = PARAMS.barcode_ids
+    script:
+        "scripts/variant_check.py"
 
 rule basic_annotations:
     input:
