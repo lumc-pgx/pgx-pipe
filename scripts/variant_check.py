@@ -13,8 +13,7 @@ import pyfaidx
 def load_alleles(filename):
     # load the haplotypes json file
     with open(filename, "r") as infile:
-        alleles = json.load(infile)
-    return alleles
+        return json.load(infile)
 
 
 def load_ccs_csv(filename):
@@ -52,46 +51,86 @@ def snp_haplotypes(snp):
 
 
 def normalize_variant(row):
-    # generate a normalized representation of the ccs_check variant
-    window = snakemake.params.windowsize
-    accession = gene.chromosome.accession
-    chrom = gene.chromosome.name
+    # Generate a normalized representation of the ccs_check variant.
+    # This uses the variant_tools module to perform local realignment of
+    # indels followed by calling of variants with an hgvs-like notation
     
+    # the un-normalized variant
     v = row["g_notation"]
+
+    # do not re-normalize substitutions
+    if row["Type"] == "SNP":
+        return v
+
+    # variant start/end positions
     start, end = (row["Start"], row["End"])
 
-    mutated_seq = mutalyzer.apply_variants([v], accession, start - window, end + window)
-    ref_seq = genome[chrom][start - window - 1:end + window].seq
+    # we apply the variant to 'windowsize' nt each size of the variant position
+    window = snakemake.params.windowsize
+   
+    # obtain the sequence with the variant applied
+    mutated_seq = mutalyzer.apply_variants(
+        [v], 
+        gene.chromosome.accession, 
+        start - window, 
+        end + window
+    )
+    
+    # get the reference sequence for the same region
+    ref_seq = genome[gene.chromosome.name][start - window - 1:end + window].seq
+    
+    # perform alignment, right-justifed
     aln = alignment.align(ref_seq, mutated_seq)
+    
+    # re-call the variant
     variants = variant_calling.call_variants(aln, start - window - 1)
     return str(variants[0])
 
 
+# some globals
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
 known_snps = set(s.g_notation for s in gene.snps)
 genome = pyfaidx.Fasta(snakemake.input.genome)
 
+
+# do the work
 with open(snakemake.output[0], "w") as outfile:
+    # one barcode at a time
     for barcode in snakemake.params.barcodes:
+        # list of dicts containing the allele assignments
         alleles = load_alleles(next(f for f in snakemake.input.haplotypes if barcode in f))
+       
+        # pandas dataframe containing the ccs_check data
         ccs_var = load_ccs_csv(next(f for f in snakemake.input.ccs_check if barcode in f))
 
         if ccs_var is not None:
+            # a set containing the variants assigned to an allele
             laa_variants = set(v["g_notation"] for allele in alleles for v in allele["variants"])
+            
+            # filter out any ccs_check variants < the specified frequency threshold
             ccs_var = ccs_var[ccs_var["Freq"] >= snakemake.params.threshold]
+
+            # add columns to the dataframe containing the variant start, end and unnormalized variant representation
             ccs_var["Start"] = ccs_var.apply(lambda x: x["Pos"] + 1 if x["Type"] in ("SNP", "Insertion") else x["Pos"] + 2, axis=1).astype(int)
             ccs_var["End"] = ccs_var.apply(lambda x: x["Start"] + 1 if x["Type"] == "Insertion" else x["Start"] + x["Length"] - 1, axis=1).astype(int)
             ccs_var["g_notation"] = ccs_var.apply(hgvs_snp_from_row, axis=1)
+            
+            # add a column containing the normalized variant
             ccs_var["Normalized"] = ccs_var.apply(normalize_variant, axis=1)
-                
+            
+            # Make a set containing the description of known variants which were found by ccs_check
+            # but were not included in any of the LAA sequences
             missed = (set(ccs_var["Normalized"]) - laa_variants) & known_snps
         else:
             missed = set()
 
+        # output
         print(barcode, file=outfile, end="\t")
 
         if len(missed) > 0:
+            # filter the dataframe to include only the missed variants
             missed_variants = ccs_var[ccs_var["Normalized"].isin(missed)]
+            # annotate and dump
             annotated = []
             for index, row in missed_variants.iterrows():
                 annotated.append("{0} ({1:.2f};{2})".format(row["Normalized"], row["Freq"], snp_haplotypes(row["Normalized"])))
