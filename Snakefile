@@ -170,11 +170,15 @@ rule missed_variants:
     input:
         haplotypes = expand("haplotyping/haplotypes/{{gene}}/{barcodes}.haplotype.json", barcodes=PARAMS.barcode_ids),
         ccs_check = expand("preprocessor/summary/ccs_check/{barcodes}.csv", barcodes=PARAMS.barcode_ids),
-        gene = config["LOCI"][0]
+        gene = config["LOCI"][0],
+        genome = config["GENOME"]
     output:
         "summary/{gene}/missed_variants.txt"
+    conda:
+        "envs/variant_check.yaml"
     params:
         threshold=0.2,
+        windowsize=50,
         barcodes = PARAMS.barcode_ids
     script:
         "scripts/variant_check.py"
