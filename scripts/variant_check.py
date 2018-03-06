@@ -94,7 +94,8 @@ genome = pyfaidx.Fasta(snakemake.input.genome)
 
 
 # do the work
-with open(snakemake.output[0], "w") as outfile:
+with open(snakemake.output.known, "w") as known_out, \
+     open(snakemake.output.novel, "w") as novel_out:
     # one barcode at a time
     for barcode in snakemake.params.barcodes:
         # list of dicts containing the allele assignments
@@ -118,23 +119,44 @@ with open(snakemake.output[0], "w") as outfile:
             # add a column containing the normalized variant
             ccs_var["Normalized"] = ccs_var.apply(normalize_variant, axis=1)
             
-            # Make a set containing the description of known variants which were found by ccs_check
+            # Make a set containing the description of variants which were found by ccs_check
             # but were not included in any of the LAA sequences
-            missed = (set(ccs_var["Normalized"]) - laa_variants) & known_snps
+            missed = set(ccs_var["Normalized"]) - laa_variants
+            
+            # known
+            missed_known = missed & known_snps
+            
+            # and novel
+            missed_novel = missed - known_snps
         else:
-            missed = set()
+            missed_known = set()
+            missed_novel = set()
 
-        # output
-        print(barcode, file=outfile, end="\t")
+        # output known
+        print(barcode, file=known_out, end="\t")
 
-        if len(missed) > 0:
+        if len(missed_known) > 0:
             # filter the dataframe to include only the missed variants
-            missed_variants = ccs_var[ccs_var["Normalized"].isin(missed)]
+            missed_variants = ccs_var[ccs_var["Normalized"].isin(missed_known)]
             # annotate and dump
             annotated = []
             for index, row in missed_variants.iterrows():
                 annotated.append("{0} ({1:.2f};{2})".format(row["Normalized"], row["Freq"], snp_haplotypes(row["Normalized"])))
-            print(",".join(annotated), file=outfile, end="")
+            print(",".join(annotated), file=known_out, end="")
 
-        print("", file=outfile)
+        print("", file=known_out)
+        
+        # output novel
+        print(barcode, file=novel_out, end="\t")
+
+        if len(missed_novel) > 0:
+            # filter the dataframe to include only the missed variants
+            missed_variants = ccs_var[ccs_var["Normalized"].isin(missed_novel)]
+            # annotate and dump
+            annotated = []
+            for index, row in missed_variants.iterrows():
+                annotated.append("{0} ({1:.2f})".format(row["Normalized"], row["Freq"],))
+            print(",".join(annotated), file=novel_out, end="")
+
+        print("", file=novel_out)
 

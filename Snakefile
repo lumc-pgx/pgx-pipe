@@ -46,7 +46,8 @@ rule all:
         expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
 
 if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
-    rules.all.input.append("summary/{}/missed_variants.txt".format(list(PARAMS.genes)[0]))
+    rules.all.input.append("summary/{}/missed_variants_known.txt".format(list(PARAMS.genes)[0])),
+    rules.all.input.append("summary/{}/missed_variants_novel.txt".format(list(PARAMS.genes)[0]))
 
 
 # -------------- rules for preprocessing workflow ---------------------
@@ -173,7 +174,8 @@ rule missed_variants:
         gene = config["LOCI"][0],
         genome = config["GENOME"]
     output:
-        "summary/{gene}/missed_variants.txt"
+        known = "summary/{gene}/missed_variants_known.txt",
+        novel = "summary/{gene}/missed_variants_novel.txt"
     conda:
         "envs/variant_check.yaml"
     params:
