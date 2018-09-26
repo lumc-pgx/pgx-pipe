@@ -24,14 +24,8 @@ ANNOTATIONS: /path/to/ensembl/annotations.gtf
 LOCI:
   - /path/to/locus/definition/file
 
-# Path to the folder containing the smrt command executables
-SMRTCMD_PATH: /usr/local/smrtlink/smrtcmds/bin
-
 # Path to the ccs_check tool
 CCS_CHECK_PATH: /usr/local/ccscheck/bin
-
-# Path to the LIMA barcoding tool
-LIMA_PATH: /home/wgallard/bin/lima
 
 # Enable two-stage LAA
 POLISH_LAA: True
