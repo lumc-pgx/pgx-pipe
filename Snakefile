@@ -21,7 +21,6 @@ include: "modules/variant_effects/helper.snake"
 localrules:
     all,
     fastq_to_fasta,
-    barcoding_summary,
     link_sources_vc,
     link_sources_ht,
     link_sources_sv,
