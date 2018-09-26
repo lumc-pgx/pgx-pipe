@@ -1,8 +1,58 @@
 # Pharmacogenomics analysis of long amplicon sequences
+This Snakemake workflow assigns fully phased PGx haplotypes to targetted amplicon sequencing data generated using the 
+PacBio RS2 or Sequel platforms.
 
-This workflow combines the individual modules of the [PharmacogenomicsPipe](https://git.lumc.nl/PharmacogenomicsPipe) into a single workflow.
+
+## Requirements
+- [Conda/Miniconda](https://conda.io/miniconda.html)
+- [git](https://git-scm.com/)
+
+
+## Installation
+- Clone this repository
+  - `git clone https://git.lumc.nl/PharmacogenomicsPipe/pugwash.git`
+
+- Change to the pugwash directory
+  - `cd pugwash`
+
+- Initialize submodules
+  - `git submodule init`
+
+- Prepare submodules
+  - `git submodule update`
+
+- Create a conda environment for running the pipeline
+  - `conda env create -n pugwash -f environment.yaml`
+
+- In order to use the pipeline on the cluster, update your .profile to use the drmaa library:
+  - `echo "export DRMAA_LIBRARY_PATH=libdrmaa.so.1.0" >> ~/.profile`
+  - `source ~/.profile`
+
+
+## Configuration
+The pipeline behavior is configured by editing [config.yaml](config.yaml).  
+
+
+## Execution
+- Activate the conda environment created during installation
+  - `source activate pugwash`
+
+- For parallel execution on the cluster, writing output to the default *output* directory
+  - `pipe-runner`
+
+- To specify that the pipeline should write output to a location other than the default:
+  - `pipe-runner --directory path/to/output/directory`
+
+- Note
+  - The first run of the pipeline will create conda environments where required for the individual
+    pipeline rules. This process can take some time, especially on slow filesystems.
+  - Subsequent runs of the pipeline will re-use these environments, resulting in faster execution.
+
 
 ## Overview
+Pugwash combines the individual analysis modules of the [PharmacogenomicsPipe project](https://git.lumc.nl/PharmacogenomicsPipe)
+into a meta-workflow which can be run with a single command.
+
 ```plantuml
 digraph snakemake_dag {
     graph[bgcolor=white, margin=0];
