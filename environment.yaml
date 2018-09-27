@@ -5,7 +5,7 @@ channels:
 dependencies:
   - python=3.5
   - drmaa=0.7
-  - snakemake=5.3.0
+  - snakemake-minimal=5.3.0
   - pip:
     - "git+ssh://git@git.lumc.nl/PharmacogenomicsPipe/locus_processing.git@master#egg=locus_processing"
     - "git+ssh://git@git.lumc.nl/PharmacogenomicsPipe/pipe_runner.git@master#egg=pipe_runner"
