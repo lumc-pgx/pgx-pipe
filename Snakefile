@@ -31,9 +31,8 @@ localrules:
     laa_whitelist
 
 
-# workflow outputs
-rule all:
-    input:
+def output_files():
+    file_list = [
         preprocessing_params.outputs,
         VariantCallingHelper(config).outputs,
         HaplotypingHelper(config).outputs,
@@ -42,11 +41,20 @@ rule all:
         "summary/{}/haplotype_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/deletion_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/config_report.html".format(list(PARAMS.genes)[0]),
-        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
+        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids)
+    ]
 
-if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
-    rules.all.input.append("summary/{}/missed_variants_known.txt".format(list(PARAMS.genes)[0])),
-    rules.all.input.append("summary/{}/missed_variants_novel.txt".format(list(PARAMS.genes)[0]))
+    if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
+        file_list.append("summary/{}/missed_variants_known.txt".format(list(PARAMS.genes)[0])),
+        file_list.append("summary/{}/missed_variants_novel.txt".format(list(PARAMS.genes)[0]))
+    
+    return file_list
+
+
+# workflow outputs
+rule all:
+    input:
+        output_files()
 
 
 # -------------- rules for preprocessing workflow ---------------------
