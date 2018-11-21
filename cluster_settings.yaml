@@ -7,16 +7,11 @@ __default__:
 barcoding:
   threads: "{threads}"
   vmem: 2G
-  
-# Parameters specific to LAA
-laa_1:
-  threads: "{threads}"
-  vmem: "{resources.memory}G"
 
-laa_2:
-  threads: "{threads}"
-  vmem: "{resources.memory}G"
-  
+ccs_amplicon:
+  threads: 1
+  vmem: 8G
+
 # parameters specific to CCS
 ccs:
   threads: 2

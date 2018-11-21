@@ -52,12 +52,6 @@
                 <th>Polyphen <br> (*damaging)</th>
                 <th>Artifact</th>
                 <th>Disjoint</th>
-                <th>ChimeraScore</th>
-                <th>Molecules</th>
-                <th>Shared</th>
-                <th>Unique %</th>
-                <th>Good %</th>
-                <th>Chimera %</th>
             </tr>
         {% for item in summary %}
             <tr class='{{ item.shade }}'>
@@ -71,14 +65,6 @@
                 <td>{{ item['poly'] }}</td>
                 <td>{{ item['artifact'] }}</td>
                 <td>{{ item['disjoint'] }}</td>
-                <td>{{ item['chimera_score'] }}</td>
-                <td>{{ item['molecules'] }}</td>
-                <td>{{ item['shared'] }}</td>
-                <td>{{ item['fraction'] }}</td>
-                {% if 'good' in item %}
-                    <td rowspan='{{ item.num_alleles }}'>{{ item['good'] }}</td>
-                    <td rowspan='{{ item.num_alleles }}'>{{ item['chimera'] }}</td>
-                {% endif %}
             </tr>
         {% endfor %}
         </table>

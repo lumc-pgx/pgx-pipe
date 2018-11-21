@@ -21,6 +21,7 @@ include: "modules/variant_effects/helper.snake"
 localrules:
     all,
     fastq_to_fasta,
+    haplotypes,
     link_sources_vc,
     link_sources_ht,
     link_sources_sv,
@@ -63,13 +64,10 @@ include: "modules/preprocessor/rules/barcoding.snake"
 include: "modules/preprocessor/rules/merge_subreadset.snake"
 include: "modules/preprocessor/rules/demultiplex.snake"
 include: "modules/preprocessor/rules/consolidate_xml.snake"
-include: "modules/preprocessor/rules/laa.snake"
-include: "modules/preprocessor/rules/laa_summary.snake"
-include: "modules/preprocessor/rules/laa_whitelist.snake"
 include: "modules/preprocessor/rules/ccs.snake"
-include: "modules/preprocessor/rules/ccs_check.snake"
+include: "modules/preprocessor/rules/ccs_amplicon.snake"
+include: "modules/preprocessor/rules/haplotypes.snake"
 include: "modules/preprocessor/rules/fastq_to_fasta.snake"
-include: "modules/preprocessor/rules/ccs_check_summary.snake"
 
 
 # ------------------ rules for variant calling ------------------------
@@ -79,7 +77,7 @@ include: "modules/variant_calling/rules/call_variants.snake"
 rule link_sources_vc:
     # link the LAA output to the variant calling input
     input:
-        "preprocessor/LAA/{barcode}.fasta"
+        "preprocessor/CCS_Amplicon/haplotypes/{barcode}.fasta"
     output:
         "variant_calling/inputs/{gene}/{barcode}.fasta"
     shell:
@@ -111,7 +109,7 @@ include: "modules/structural_variation/rules/last_region.snake"
 rule link_sources_sv:
     # link the amplicon fastq to the sv input
     input:
-        "preprocessor/LAA/{barcode}.fastq"
+        "preprocessor/CCS_Amplicon/haplotypes/{barcode}.fastq"
     output:
         "structural_variation/inputs/{barcode}.fastq"
     shell:
@@ -138,9 +136,6 @@ rule haplotype_summary:
         last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
         gene = config["LOCI"][0],
         template = srcdir("templates/haplotypes.html"),
-        laa_allele_summary = expand("preprocessor/LAA/{barcodes}_summary.csv", barcodes=PARAMS.barcode_ids),
-        laa_subread_summary = expand("preprocessor/LAA/subreads.{barcodes}--{barcodes}.csv", barcodes=PARAMS.barcode_ids),
-        laa_input_summary = expand("preprocessor/LAA/{barcodes}_input.csv", barcodes=PARAMS.barcode_ids)
     output:
         "summary/{gene}/haplotype_report.html"
     params:
@@ -173,24 +168,6 @@ rule config_summary:
         "envs/report.yaml"
     script:
         "scripts/config_summary.py"
-
-rule missed_variants:
-    input:
-        haplotypes = expand("haplotyping/haplotypes/{{gene}}/{barcodes}.haplotype.json", barcodes=PARAMS.barcode_ids),
-        ccs_check = expand("preprocessor/summary/ccs_check/{barcodes}.csv", barcodes=PARAMS.barcode_ids),
-        gene = config["LOCI"][0],
-        genome = config["GENOME"]
-    output:
-        known = "summary/{gene}/missed_variants_known.txt",
-        novel = "summary/{gene}/missed_variants_novel.txt"
-    conda:
-        "envs/variant_check.yaml"
-    params:
-        threshold=0.2,
-        windowsize=50,
-        barcodes = PARAMS.barcode_ids
-    script:
-        "scripts/variant_check.py"
 
 rule basic_annotations:
     input:
