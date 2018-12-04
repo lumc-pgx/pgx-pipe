@@ -12,6 +12,7 @@ onerror: PARAMS.onerror(log)
 preprocessing_params = PARAMS
 
 # additional helpers
+include: "modules/phasing/helper.snake"
 include: "modules/variant_calling/helper.snake"
 include: "modules/haplotyping/helper.snake"
 include: "modules/structural_variation/helper.snake"
@@ -22,6 +23,7 @@ localrules:
     all,
     fastq_to_fasta,
     haplotypes,
+    link_sources_ph,
     link_sources_vc,
     link_sources_ht,
     link_sources_sv,
@@ -35,6 +37,7 @@ localrules:
 def output_files():
     file_list = [
         preprocessing_params.outputs,
+        PhasingHelper(config).outputs,
         VariantCallingHelper(config).outputs,
         HaplotypingHelper(config).outputs,
         SVHelper(config).outputs,
@@ -45,9 +48,9 @@ def output_files():
         expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids)
     ]
 
-    if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
-        file_list.append("summary/{}/missed_variants_known.txt".format(list(PARAMS.genes)[0])),
-        file_list.append("summary/{}/missed_variants_novel.txt".format(list(PARAMS.genes)[0]))
+    #if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
+    #    file_list.append("summary/{}/missed_variants_known.txt".format(list(PARAMS.genes)[0])),
+    #    file_list.append("summary/{}/missed_variants_novel.txt".format(list(PARAMS.genes)[0]))
     
     return file_list
 
@@ -70,14 +73,31 @@ include: "modules/preprocessor/rules/haplotypes.snake"
 include: "modules/preprocessor/rules/fastq_to_fasta.snake"
 
 
+# --------------- rules for phasing workflow --------------------------
+include: "modules/phasing/rules/ccs_amplicon.snake"
+include: "modules/phasing/rules/fastq_to_fasta.snake"
+include: "modules/phasing/rules/haplotypes.snake"
+
+rule link_sources_ph:
+    # link the preprocessor output to the phasing input
+    input:
+        subreads = "preprocessor/consolidated/{barcode}.bam",
+        ccs = "preprocessor/CCS/{barcode}.bam"
+    output:
+        subreads = "phasing/inputs/subreads/{barcode}.bam",
+        ccs = "phasing/inputs/ccs/{barcode}.bam"
+    shell:
+        "ln -s -r {input.subreads} {output.subreads} && ln -s -r {input.ccs} {output.ccs}"
+
+
 # ------------------ rules for variant calling ------------------------
 include: "modules/variant_calling/rules/gene_reference.snake"
 include: "modules/variant_calling/rules/call_variants.snake"
 
 rule link_sources_vc:
-    # link the LAA output to the variant calling input
+    # link the phasing output to the variant calling input
     input:
-        "preprocessor/CCS_Amplicon/haplotypes/{barcode}.fasta"
+        "phasing/haplotypes/{barcode}.fasta"
     output:
         "variant_calling/inputs/{gene}/{barcode}.fasta"
     shell:
