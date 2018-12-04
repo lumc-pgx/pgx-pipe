@@ -13,3 +13,6 @@
 [submodule "modules/variant_effects"]
 	path = modules/variant_effects
 	url = git@git.lumc.nl:PharmacogenomicsPipe/variant_effects.git
+[submodule "modules/phasing"]
+	path = modules/phasing
+	url = git@git.lumc.nl:PharmacogenomicsPipe/phasing.git
