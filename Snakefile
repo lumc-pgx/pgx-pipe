@@ -68,9 +68,6 @@ include: "modules/preprocessor/rules/merge_subreadset.snake"
 include: "modules/preprocessor/rules/demultiplex.snake"
 include: "modules/preprocessor/rules/consolidate_xml.snake"
 include: "modules/preprocessor/rules/ccs.snake"
-include: "modules/preprocessor/rules/ccs_amplicon.snake"
-include: "modules/preprocessor/rules/haplotypes.snake"
-include: "modules/preprocessor/rules/fastq_to_fasta.snake"
 
 
 # --------------- rules for phasing workflow --------------------------
@@ -129,7 +126,7 @@ include: "modules/structural_variation/rules/last_region.snake"
 rule link_sources_sv:
     # link the amplicon fastq to the sv input
     input:
-        "preprocessor/CCS_Amplicon/haplotypes/{barcode}.fastq"
+        "phasing/haplotypes/{barcode}.fastq"
     output:
         "structural_variation/inputs/{barcode}.fastq"
     shell:
