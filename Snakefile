@@ -152,6 +152,7 @@ rule haplotype_summary:
         vep = expand("variant_effect/vep/{{gene}}/{barcodes}.json", barcodes=PARAMS.barcode_ids),
         last = expand("structural_variation/last_region/{barcodes}.txt", barcodes=PARAMS.barcode_ids),
         gene = config["LOCI"][0],
+        phasing = expand("phasing/CCS_Amplicon/{barcodes}/phasing/{barcodes}.phasing.tsv", barcodes=PARAMS.barcode_ids),
         template = srcdir("templates/haplotypes.html"),
     output:
         "summary/{gene}/haplotype_report.html"

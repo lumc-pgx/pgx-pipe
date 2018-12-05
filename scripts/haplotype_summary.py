@@ -37,53 +37,35 @@ def load_last(filename):
     return last
     
 
-# def load_laa_summary(filename):
-   # # load the laa amplicon summary file into a dataframe
-   # return pd.read_csv(filename)
+def load_phasing_summary(filename):
+    # load phasing summary
+    try:
+        return pd.read_csv(filename, sep="\t")
+    except pd.errors.EmptyDataError:
+        return None
 
 
-# def load_subread_summary(filename):
-    # # load subread summary and determine number of molecules per allele
-    # try:
-        # data = pd.read_csv(filename)
-    # except pd.errors.EmptyDataError:
-        # return dict(), dict()
+def count_molecules(allele_id, phasing):
+    if phasing is None:
+        return 0
 
-    # alleles = list(data.columns[1:])
-    # data["molecules"] = data["SubreadId"].map(lambda x: "/".join(x.split("/")[:-1]))
-    
-    # # make sure allele column contains 1 or 0
-    # for allele in alleles:
-        # data[allele] = data[allele].astype(float).map(lambda x: 1 if x > 0.5 else 0)
-    
-    # allele_molecules = defaultdict(set)
-    # for allele in alleles:
-        # allele_molecules[allele] = set(data[data[allele] == 1]["molecules"])
-    
-    # counts = dict()
-    
-    # # identify molecules which contribute to multiple alleles
-    # for a1 in allele_molecules:
-        # other = set()
-        # for a2 in allele_molecules:
-            # if a1 != a2:
-                # other |= allele_molecules[a2]
-        
-        # total = len(allele_molecules[a1])
-        # shared = len(allele_molecules[a1] & other)
-        # try:
-            # fraction = (total - shared) / total
-        # except ZeroDivisionError:
-            # fraction = 0
-    
-        # counts[a1] = {"total": total, "shared": shared, "fraction": fraction}
-
-    # return counts
+    counts = phasing.groupby(["cluster", "phase"])["id"].count()
+    fields = allele_id.split(".")
+    cluster = int(fields[1].split("cluster")[-1])
+    phase = int(fields[2].split("haplotype")[-1])
+    return counts[(cluster, phase)]
 
 
-# def load_laa_inputs(filename):
-    # # load the laa input summary file into a dataframe
-    # return pd.read_csv(filename)
+def count_passes(allele_id, phasing):
+    if phasing is None:
+        return 0
+
+    counts = phasing.groupby(["cluster", "phase"])["np"].sum()
+    fields = allele_id.split(".")
+    cluster = int(fields[1].split("cluster")[-1])
+    phase = int(fields[2].split("haplotype")[-1])
+    return counts[(cluster, phase)]
+
 
 gene = locus_processing.load_locus_yaml(snakemake.input.gene)
 
@@ -92,12 +74,8 @@ def summarize_alleles(barcode):
     alleles = load_alleles(next(f for f in snakemake.input.haplotypes if barcode in f))
     vep = load_vep(next(f for f in snakemake.input.vep if barcode in f))
     last = load_last(next(f for f in snakemake.input.last if barcode in f))
-    #chimera_df = load_laa_summary(next(f for f in snakemake.input.laa_allele_summary if barcode in f))
-    #molecules = load_subread_summary(next(f for f in snakemake.input.laa_subread_summary if barcode in f))
-    #inputs = load_laa_inputs(next(f for f in snakemake.input.laa_input_summary if barcode in f))
+    phasing = load_phasing_summary(next(f for f in snakemake.input.phasing if barcode in f))
     
-    #good = float(inputs[inputs["Barcode"] == "All"]["Good(%)"])
-    #chimera = float(inputs[inputs["Barcode"] == "All"]["Chimera(%)"])
     num_alleles = len(alleles)
     first = True
     
@@ -105,6 +83,10 @@ def summarize_alleles(barcode):
         info = {}        
         info["id"] = allele["sequence_id"]
         info["assignment"] = " ".join(allele["haplotype"])
+        
+        info["molecules"] = count_molecules(allele["sequence_id"], phasing)
+        info["passes"] = count_passes(allele["sequence_id"], phasing)
+        
         match = allele["haplotypes"]
         info["known"] = len([v for v in allele["variants"] if "known" in v["tags"]])
         info["unknown"] = len([v for v in allele["variants"] if "novel" in v["tags"]])
@@ -138,19 +120,6 @@ def summarize_alleles(barcode):
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
 
-        #chimera_score = float(chimera_df[chimera_df.FastaName == allele_id]["ChimeraScore"])
-        #info["chimera_score"] = "{0:.3f}".format(chimera_score) if chimera_score > 0 else "{0:.0f}".format(chimera_score)
-        #info["molecules"] = molecules[allele_id]["total"]
-        #info["shared"] = molecules[allele_id]["shared"]
-        #fraction = molecules[allele_id]["fraction"]
-        #info["fraction"] = "{0:.3f}".format(fraction) if fraction > 0 else "{0:.0f}".format(fraction)
-
-        #if first:
-        #    info["good"] = "{0:.1f}".format(good)
-        #    info["chimera"] = "{0:.1f}".format(chimera)
-        #    info["num_alleles"] = num_alleles
-        #    first = False
-            
         yield info
 
 
