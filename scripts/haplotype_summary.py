@@ -79,6 +79,7 @@ def summarize_alleles(barcode):
     num_alleles = len(alleles)
     first = True
     
+    allele_info = []
     for allele in alleles:
         info = {}        
         info["id"] = allele["sequence_id"]
@@ -120,6 +121,11 @@ def summarize_alleles(barcode):
         info["artifact"] = "1" if artifact else "0"
         info["disjoint"] = "1" if disjoint else "0"
 
+        allele_info.append(info)
+    
+    total_molecules = sum(i["molecules"] for i in allele_info)
+    for info in allele_info:
+        info["fraction"] = info["molecules"] / total_molecules
         yield info
 
 
@@ -127,12 +133,14 @@ allele_summary = []
 shade = True;
 for barcode in snakemake.params.barcodes:
     alleles = list(summarize_alleles(barcode))
+    
     for allele in alleles:
         allele["shade"] = "dark" if shade else "light"
         allele_summary.append(allele)
     
     if len(alleles) > 0:
         shade = not shade
+
 
 j2_env = Environment(loader=FileSystemLoader(os.path.dirname(snakemake.input.template)),
                      trim_blocks=True)

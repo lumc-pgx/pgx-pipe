@@ -45,6 +45,7 @@
                 <th>Allele</th>
                 <th>Assignment</th>
                 <th>Molecules</th>
+                <th>Fraction</th>
                 <th>Passes</th>
                 <th>Variants</th>
                 <th>Significant</th>
@@ -60,6 +61,7 @@
                 <td class='allele'>{{ item['id'] }}</td>
                 <td>{{ item['assignment'] }}</td>
                 <td>{{ item['molecules'] }}</td>
+                <td>{{ "%.2f"|format(item['fraction']) }}</td>
                 <td>{{ item['passes'] }}</td>
                 <td>{{ item['total'] }}</td>
                 <td>{{ item['significant'] }}</td>
