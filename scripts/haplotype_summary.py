@@ -124,6 +124,7 @@ def summarize_alleles(barcode):
         allele_info.append(info)
     
     total_molecules = sum(i["molecules"] for i in allele_info)
+    allele_info.sort(key=lambda x: x["molecules"], reverse=True)
     for info in allele_info:
         info["fraction"] = info["molecules"] / total_molecules
         yield info
