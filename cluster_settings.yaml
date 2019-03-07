@@ -10,7 +10,7 @@ barcoding:
 
 ccs_amplicon:
   threads: 1
-  vmem: 8G
+  vmem: 16G
 
 # parameters specific to CCS
 ccs:
