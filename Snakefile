@@ -84,7 +84,8 @@ rule link_sources_ph:
         subreads = "phasing/inputs/subreads/{barcode}.bam",
         ccs = "phasing/inputs/ccs/{barcode}.bam"
     shell:
-        "ln -s -r {input.subreads} {output.subreads} && ln -s -r {input.ccs} {output.ccs}"
+        "ln -s -r {input.subreads} {output.subreads} && "
+        "ln -s -r {input.ccs} {output.ccs} "
 
 
 # ------------------ rules for variant calling ------------------------
