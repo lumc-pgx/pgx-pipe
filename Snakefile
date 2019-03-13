@@ -31,12 +31,13 @@ localrules:
     matches,
     pick,
     tabulate,
-    laa_whitelist
+    laa_whitelist,
+    phasing_summary
 
 
 def output_files():
     file_list = [
-        preprocessing_params.outputs,
+#        preprocessing_params.outputs,
         PhasingHelper(config).outputs,
         VariantCallingHelper(config).outputs,
         HaplotypingHelper(config).outputs,
@@ -45,7 +46,8 @@ def output_files():
         "summary/{}/haplotype_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/deletion_report.html".format(list(PARAMS.genes)[0]),
         "summary/{}/config_report.html".format(list(PARAMS.genes)[0]),
-        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids)
+        expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
+        expand("summary/{gene}/phasing/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
     ]
 
     #if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
@@ -62,12 +64,12 @@ rule all:
 
 
 # -------------- rules for preprocessing workflow ---------------------
-include: "modules/preprocessor/rules/source_data.snake"
-include: "modules/preprocessor/rules/barcoding.snake"
-include: "modules/preprocessor/rules/merge_subreadset.snake"
-include: "modules/preprocessor/rules/demultiplex.snake"
-include: "modules/preprocessor/rules/consolidate_xml.snake"
-include: "modules/preprocessor/rules/ccs.snake"
+#include: "modules/preprocessor/rules/source_data.snake"
+#include: "modules/preprocessor/rules/barcoding.snake"
+#include: "modules/preprocessor/rules/merge_subreadset.snake"
+#include: "modules/preprocessor/rules/demultiplex.snake"
+#include: "modules/preprocessor/rules/consolidate_xml.snake"
+#include: "modules/preprocessor/rules/ccs.snake"
 
 
 # --------------- rules for phasing workflow --------------------------
@@ -226,4 +228,12 @@ rule sv_visualization:
         "envs/sv_viz.yaml"
     script:
         "scripts/sv_report.py"
-        
+
+
+rule phasing_summary:
+    input:
+        "phasing/CCS_Amplicon/{barcode}/phasing/{barcode}.html"
+    output:
+        "summary/{gene}/phasing/{barcode}.html"
+    shell:
+        "cp {input} {output}"
