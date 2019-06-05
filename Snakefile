@@ -37,7 +37,7 @@ localrules:
 
 def output_files():
     file_list = [
-#        preprocessing_params.outputs,
+        preprocessing_params.outputs,
         PhasingHelper(config).outputs,
         VariantCallingHelper(config).outputs,
         HaplotypingHelper(config).outputs,
@@ -48,6 +48,7 @@ def output_files():
         "summary/{}/config_report.html".format(list(PARAMS.genes)[0]),
         expand("summary/{gene}/structure/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
         expand("summary/{gene}/phasing/{barcode}.html", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
+        expand("summary/{gene}/phasing/{barcode}.chimera_scan.tsv", gene=list(PARAMS.genes)[0], barcode=PARAMS.barcode_ids),
     ]
 
     #if config.get("STAGE_PARAMS", {}).get("CCS_CHECK", False):
@@ -64,17 +65,16 @@ rule all:
 
 
 # -------------- rules for preprocessing workflow ---------------------
-#include: "modules/preprocessor/rules/source_data.snake"
-#include: "modules/preprocessor/rules/barcoding.snake"
-#include: "modules/preprocessor/rules/merge_subreadset.snake"
-#include: "modules/preprocessor/rules/demultiplex.snake"
-#include: "modules/preprocessor/rules/consolidate_xml.snake"
-#include: "modules/preprocessor/rules/ccs.snake"
+include: "modules/preprocessor/rules/source_data.snake"
+include: "modules/preprocessor/rules/barcoding.snake"
+include: "modules/preprocessor/rules/merge_subreadset.snake"
+include: "modules/preprocessor/rules/demultiplex.snake"
+include: "modules/preprocessor/rules/consolidate_xml.snake"
+include: "modules/preprocessor/rules/ccs.snake"
 
 
 # --------------- rules for phasing workflow --------------------------
 include: "modules/phasing/rules/ccs_amplicon.snake"
-include: "modules/phasing/rules/fastq_to_fasta.snake"
 include: "modules/phasing/rules/haplotypes.snake"
 
 rule link_sources_ph:
@@ -235,5 +235,14 @@ rule phasing_summary:
         "phasing/CCS_Amplicon/{barcode}/phasing/{barcode}.html"
     output:
         "summary/{gene}/phasing/{barcode}.html"
+    shell:
+        "cp {input} {output}"
+
+
+rule chimera_summary:
+    input:
+        "phasing/haplotypes/{barcode}.chimera_scan.tsv"
+    output:
+        "summary/{gene}/phasing/{barcode}.chimera_scan.tsv"
     shell:
         "cp {input} {output}"
