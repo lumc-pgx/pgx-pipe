@@ -24,39 +24,42 @@ ANNOTATIONS: /path/to/ensembl/annotations.gtf
 LOCI:
   - /path/to/locus/definition/file
 
-# Path to the ccs_check tool
-CCS_CHECK_PATH: /usr/local/ccscheck/bin
-
-# Enable two-stage LAA
-POLISH_LAA: True
-
 # params for individual stages
+# to disable a stage, remove its parameters
 STAGE_PARAMS:
-  LAA: 
-    trimEnds: 21
-    ignoreEnds: 21
-    fullLength: True
-    minLength: 6000
-    maxLength: 7000
- 
   CCS:
-    minLength: 6000
-    maxLength: 7000
+    minLength: 1000
+    maxLength: 10000
     minPasses: 1
     minPredictedAccuracy: 0.75
+    numThreads: 2
 
-  CCS_CHECK:
-    # minimum qv score for including reads
-    minQV: 0
-    # only display variants with a frequency >= minFreq
-    minFreq: 0.02
-    # only display results for reads mapping to this chromosome
-    chromosome: chr22
-    # display insertions / deletions?
-    showIndel: False
-    # don't use reads less than minLength long
-    minLength: 2000
-    
+  LIMA:
+    same: True           # symmetric barcoding
+    num-threads: 4       # number of threads
+    dump-clips: True     # save the clipped adapters
+
+  CCS_AMPLICON:
+    min-ccs-length: 6000
+    max-ccs-length: 7000
+    min-ccs-passes: 1
+    min-ccs-qual: 0.95
+    max-homopolymer: 2
+    trim-ends: 0
+    tsne-iterations: 5000
+    tsne-rate: 50
+    cluster-percentile: 10
+    cluster-inflation: 1.4
+    cluster-size-threshold: 0.2
+    max-cluster-size: 300
+    consensus-fraction: 0.25
+    min-haplotype-molecules: 10
+    min-variant-qual: 50
+    max-phasing-seqs: 100
+    forward-primer: GCAGTCGAACATGTAGCTGACTCAGGTCACATGGCAGCTGCCATACAATCCACCTG
+    reverse-primer: TGGATCACTTGTGCAAGCATCACATCGTAGCGACTGAGCCCTGGGAGGTAGGTAG
+    max-primer-dist: 5
+
   HAPLOTYPER:
     # ignore variants at start/end of sequence when determining haplotypes
     ignoreBoundary: True
@@ -68,9 +71,3 @@ STAGE_PARAMS:
     vep_cache_version: 88
     # ignore variants at start/end of sequence?
     ignoreBoundary: True
-  
-  LIMA:
-    same: True           # symmetric barcoding
-    num-threads: 4       # number of threads
-    dump-clips: True     # save the clipped adapters
-    no-pbi: True         # don't generate bam index
