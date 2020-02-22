@@ -1,18 +1,18 @@
 [submodule "modules/preprocessor"]
 	path = modules/preprocessor
-	url = git@git.lumc.nl:PharmacogenomicsPipe/preprocessor.git
+	url = git@github.com:lumc-pgx/preprocessor.git
 [submodule "modules/variant_calling"]
-	path = modules/variant_calling
-	url = git@git.lumc.nl:PharmacogenomicsPipe/variant_calling.git
+	path = modules/variant-calling
+	url = git@github.com:lumc-pgx/variant-calling.git
 [submodule "modules/haplotyping"]
 	path = modules/haplotyping
-	url = git@git.lumc.nl:PharmacogenomicsPipe/haplotyping.git
+	url = git@github.com:lumc-pgx/haplotyping.git
 [submodule "modules/structural_variation"]
 	path = modules/structural_variation
-	url = git@git.lumc.nl:PharmacogenomicsPipe/structural_variation.git
+	url = git@github.com:lumc-pgx/structural_variation.git
 [submodule "modules/variant_effects"]
 	path = modules/variant_effects
-	url = git@git.lumc.nl:PharmacogenomicsPipe/variant_effects.git
+	url = git@github.com:lumc-pgx/variant_effects.git
 [submodule "modules/phasing"]
 	path = modules/phasing
-	url = git@git.lumc.nl:PharmacogenomicsPipe/phasing.git
+	url = git@github.com:lumc-pgx/phasing.git
