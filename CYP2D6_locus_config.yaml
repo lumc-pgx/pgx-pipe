@@ -1,0 +1,3208 @@
+---
+version: 1.0.2
+
+name: CYP2D6
+
+reference: GRCh38
+
+chromosome:
+  name: chr22
+  accession: NC_000022.11
+
+coordinates:
+  start: 42126062
+  end: 42132599
+
+transcript: NM_000106.5
+
+snps:
+  - id: '1'
+    c_notation: 
+    g_notation: 42132561C>T
+    p_notation: 
+    alt_notation: '-1770G>A'
+    description: 
+    tags: 
+  - id: '2'
+    c_notation: 
+    g_notation: 42132531G>A
+    p_notation: 
+    alt_notation: '-1740C>T'
+    description:
+    tags: 
+  - id: '3'
+    c_notation: 
+    g_notation: 42132391T>A
+    ref_g_notation: 42132391_42132392delTCinsAA
+    p_notation: 
+    alt_notation: '-1601_-1600GA>TT'
+    description:
+    tags: 
+  - id: '4'
+    c_notation: 
+    g_notation: 42132375G>C
+    p_notation: 
+    alt_notation: '-1584C>G'
+    description:
+    tags:  
+  - id: '5'
+    c_notation: 
+    g_notation: 42132334C>T
+    p_notation: 
+    alt_notation: '-1543G>A'
+    description:
+    tags:  
+  - id: '6'
+    c_notation: 
+    g_notation: 42132217G>A
+    p_notation: 
+    alt_notation: '-1426C>T'
+    description: 
+    tags: 
+  - id: '7'
+    c_notation: 
+    g_notation: 42132089C>T
+    p_notation: 
+    alt_notation: '-1298G>A'
+    description:
+    tags: 
+  - id: '8'
+    c_notation: 
+    g_notation: 42132049_42132050insT
+    ref_g_notation: 42132048_42132049insT
+    p_notation: 
+    alt_notation: Variable number of A's in the region -1258 to -1237
+    description:
+    tags: 
+  - id: '9'
+    c_notation: 
+    g_notation: 42132049_42132050insTT
+    ref_g_notation: 42132048_42132049insTT
+    p_notation: 
+    alt_notation: Variable number of A's in the region -1258 to -1237
+    description:
+    tags:  
+  - id: '10'
+    c_notation: 
+    g_notation: 42132048_42132049delTT
+    p_notation: 
+    alt_notation: Variable number of A's in the region -1258 to -1237
+    description:
+    tags:  
+  - id: '11'
+    c_notation: 
+    g_notation: 42132026T>C
+    p_notation: 
+    alt_notation: '-1235A>G'
+    description: 
+    tags: 
+  - id: '12'
+    c_notation: 
+    g_notation: 42131900G>A
+    p_notation: 
+    alt_notation: '-1109C>T'
+    description: 
+    tags: 
+  - id: '13'
+    c_notation: 
+    g_notation: 42131894_42131895insT
+    ref_g_notation: 42131884_42131885insT
+    p_notation: 
+    alt_notation: '-1094_-1093insA'
+    description: 
+    tags: 
+  - id: '14'
+    c_notation: 
+    g_notation: 42131802A>G
+    p_notation: 
+    alt_notation: '-1011T>C'
+    description: 
+    tags: 
+  - id: '15'
+    c_notation: 
+    g_notation: 42131791C>T
+    p_notation: 
+    alt_notation: '-1000G>A'
+    description: 
+    tags: 
+  - id: '16'
+    c_notation: 
+    g_notation: 42131751C>G
+    p_notation: 
+    alt_notation: '-960G>C'
+    description: 
+    tags:
+  - id: '17'
+    c_notation: 
+    g_notation: 42131546_42131547delTC
+    ref_g_notation: 42131540_42131541delTC
+    p_notation: 
+    alt_notation: '-750_-749delGA'
+    description: 
+    tags: 
+  - id: '18'
+    c_notation: 
+    g_notation: 42131531G>A
+    p_notation: 
+    alt_notation: '-740C>T'
+    description: 
+    tags: 
+  - id: '19'
+    c_notation: 
+    g_notation: 42131485_42131488delCACA
+    ref_g_notation: 42131483_42131486delCACA
+    p_notation: 
+    alt_notation: '-695_-692delTGTG'
+    description: 
+    tags: 
+  - id: '20'
+    c_notation: 
+    g_notation: 42131469C>T
+    p_notation: 
+    alt_notation: '-678G>A'
+    description: 
+    tags:
+  - id: '21'
+    c_notation: 
+    g_notation: 42131420T>C
+    p_notation: 
+    alt_notation: '-629A>G'
+    description: 
+    tags: 
+  - id: '22'
+    c_notation: 
+    g_notation: 42131222G>A
+    p_notation: 
+    alt_notation: '-431C>T'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '23'
+    c_notation: 
+    g_notation: 42131145T>C
+    p_notation: 
+    alt_notation: '-354A>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '24'
+    c_notation: 
+    g_notation: 42131125C>G
+    p_notation: 
+    alt_notation: '-334G>C'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '25'
+    c_notation: 
+    g_notation: 42131122A>C
+    p_notation: 
+    alt_notation: '-331T>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '26'
+    c_notation: 
+    g_notation: 42131119G>A
+    p_notation: 
+    alt_notation: '-328C>T'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '27'
+    c_notation: 
+    g_notation: 42131118T>C
+    p_notation: 
+    alt_notation: '-327A>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '28'
+    c_notation: 
+    g_notation: 42131112G>C
+    p_notation: 
+    alt_notation: '-321C>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '29'
+    c_notation: 
+    g_notation: 42131111T>C
+    p_notation: 
+    alt_notation: '-320A>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '30'
+    c_notation: 
+    g_notation: 42131067G>A
+    p_notation: 
+    alt_notation: '-276C>T'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '31'
+    c_notation: 
+    g_notation: 42131066G>A
+    p_notation: 
+    alt_notation: '-275C>T'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '32'
+    c_notation: 
+    g_notation: 42131063G>A
+    p_notation: 
+    alt_notation: '-272C>T'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '33'
+    c_notation: 
+    g_notation: 42131059C>T
+    p_notation: 
+    alt_notation: '-268G>A'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '34'
+    c_notation: 
+    g_notation: 42131058C>G
+    p_notation: 
+    alt_notation: '-267G>C'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '35'
+    c_notation: 
+    g_notation: 42131023C>G
+    p_notation: 
+    alt_notation: '-232A>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '36'
+    c_notation: 
+    g_notation: 42131016T>C
+    p_notation: 
+    alt_notation: '-225A>G'
+    description: conversion upstream of exon1
+    tags: 
+  - id: '37'
+    c_notation: 
+    g_notation: 42130967C>T
+    p_notation: 
+    alt_notation: '-176G>A'
+    description: 
+    tags: 
+  - id: '38'
+    c_notation: 
+    g_notation: 42130929T>C
+    p_notation: 
+    alt_notation: '-138A>G'
+    description: 
+    tags: 
+  - id: '39'
+    c_notation: 
+    g_notation: 42130778G>A
+    p_notation: 
+    alt_notation: 14C>T
+    description: 
+    tags: 
+  - id: '40'
+    c_notation: 
+    g_notation: 42130774C>T
+    p_notation: 
+    alt_notation: 18G>A
+    description: 
+    tags: 
+  - id: '41'
+    c_notation: 
+    g_notation: 42130773C>T
+    p_notation: 
+    alt_notation: 19G>A
+    description: V7M
+    tags: 
+  - id: '42'
+    c_notation: 
+    g_notation: 42130761C>T
+    p_notation: 
+    alt_notation: 31G>A
+    description: V11M
+    tags:
+      - significant 
+  - id: '43'
+    c_notation: 
+    g_notation: 42130719G>A
+    p_notation: 
+    alt_notation: 73C>T
+    description: R25W
+    tags: 
+  - id: '44'
+    c_notation: 
+    g_notation: 42130715C>T
+    p_notation: 
+    alt_notation: 77G>A
+    description: R26H
+    tags: 
+  - id: '45'
+    c_notation: 
+    g_notation: 42130710G>A
+    p_notation: 
+    alt_notation: 82C>T
+    description: R28C
+    tags: 
+  - id: '46'
+    c_notation: 
+    g_notation: 42130692G>A
+    p_notation: 
+    alt_notation: 100C>T
+    description: P34S
+    tags:
+      - significant 
+  - id: '47'
+    c_notation: 
+    g_notation: 42130690T>C
+    p_notation: 
+    alt_notation: 102A>G
+    description: 
+    tags: 
+  - id: '48'
+    c_notation: 
+    g_notation: 42130668C>T
+    p_notation: 
+    alt_notation: 124G>A
+    description: G42R
+    tags: 
+  - id: '49'
+    c_notation: 
+    g_notation: 42130667C>T
+    p_notation: 
+    alt_notation: 125G>A
+    description: G42E
+    tags: 
+  - id: '50'
+    c_notation: 
+    g_notation: 42130655_42130656insA
+    ref_g_notation: 42130654_42130655insA
+    p_notation: 
+    alt_notation: 137_138insT
+    description: 46Frameshift
+    tags:
+      - significant
+  - id: '51'
+    c_notation: 
+    g_notation: 42130578C>G
+    p_notation: 
+    alt_notation: 214G>C
+    description: Intron 1 conversion
+    tags: 
+  - id: '52'
+    c_notation: 
+    g_notation: 42130571G>T
+    p_notation: 
+    alt_notation: 221C>A
+    description: Intron 1 conversion
+    tags: 
+  - id: '53'
+    c_notation: 
+    g_notation: 42130569G>C
+    p_notation: 
+    alt_notation: 223C>G
+    description: Intron 1 conversion
+    tags: 
+  - id: '54'
+    c_notation: 
+    g_notation: 42130565A>G
+    p_notation: 
+    alt_notation: 227T>C
+    description: Intron 1 conversion
+    tags: 
+  - id: '55'
+    c_notation: 
+    g_notation: 42130560C>G
+    p_notation: 
+    alt_notation: 232G>C
+    description: Intron 1 conversion
+    tags: 
+  - id: '56'
+    c_notation: 
+    g_notation: 42130559T>G
+    p_notation: 
+    alt_notation: 233A>C
+    description: Intron 1 conversion
+    tags: 
+  - id: '57'
+    c_notation: 
+    g_notation: 42130547T>C
+    p_notation: 
+    alt_notation: 245A>G
+    description: Intron 1 conversion
+    tags: 
+  - id: '58'
+    c_notation: 
+    g_notation: 42130482C>A
+    p_notation: 
+    alt_notation: 310G>T
+    description: 
+    tags: 
+  - id: '59'
+    c_notation: 
+    g_notation: 42130192_42130193insG
+    p_notation: 
+    alt_notation: 601delC
+    description: 
+    tags: 
+  - id: '60'
+    c_notation: 
+    g_notation: 42130186C>T
+    p_notation: 
+    alt_notation: 607G>A
+    description: 
+    tags: 
+  - id: '61'
+    c_notation: 
+    g_notation: 42130047G>C
+    p_notation: 
+    alt_notation: 746C>G
+    description: 
+    tags: 
+  - id: '62'
+    c_notation: 
+    g_notation: 42129950A>C
+    p_notation: 
+    alt_notation: 843T>G
+    description: 
+    tags: 
+  - id: '63'
+    c_notation: 
+    g_notation: 42129910C>G
+    p_notation: 
+    alt_notation: 883G>C
+    description: splicing defect
+    tags: 
+      - significant
+  - id: '64'
+    c_notation: 
+    g_notation: 42129906G>A
+    p_notation: 
+    alt_notation: 887C>T
+    description: 
+    tags: 
+  - id: '65'
+    c_notation: 
+    g_notation: 42129836G>A
+    p_notation: 
+    alt_notation: 957C>T
+    description: A85V
+    tags: 
+  - id: '66'
+    c_notation: 
+    g_notation: 42129821G>A
+    p_notation: 
+    alt_notation: 972C>T
+    description: A90V
+    tags: 
+  - id: '67'
+    c_notation: 
+    g_notation: 42129819G>T
+    p_notation: 
+    alt_notation: 974C>A
+    description: L91M
+    tags: 
+  - id: '68'
+    c_notation: 
+    g_notation: 42129809T>C
+    p_notation: 
+    alt_notation: 984A>G
+    description: H94R
+    tags: 
+  - id: '69'
+    c_notation: 
+    g_notation: 42129796G>C
+    p_notation: 
+    alt_notation: 997C>G
+    description: 
+    tags: 
+  - id: '70'
+    c_notation: 
+    g_notation: 42129780C>T
+    p_notation: 
+    alt_notation: 1013G>A
+    description: V104M
+    tags: 
+  - id: '71'
+    c_notation: 
+    g_notation: 42129779A>G
+    p_notation: 
+    alt_notation: 1014T>C
+    description: V104A
+    tags: 
+  - id: '72'
+    c_notation: 
+    g_notation: 42129771T>A
+    p_notation: 
+    alt_notation: 1022A>T
+    description: 
+    tags: 
+  - id: '73'
+    c_notation: 
+    g_notation: 42129770G>A
+    p_notation: 
+    alt_notation: 1023C>T
+    description: T107I
+    tags: 
+      - significant
+  - id: '74'
+    c_notation: 
+    g_notation: 42129770G>T
+    p_notation: 
+    alt_notation: 1023C>A
+    description: T107I
+    tags: 
+      - significant
+  - id: '75'
+    c_notation: 
+    g_notation: 42129765T>C
+    p_notation: 
+    alt_notation: 1028A>G
+    description: I109V
+    tags: 
+  - id: '76'
+    c_notation: 
+    g_notation: 42129757A>G
+    p_notation: 
+    alt_notation: 1036T>C
+    description: 
+    tags: 
+  - id: '77'
+    c_notation: 
+    g_notation: 42129754G>A
+    p_notation: 
+    alt_notation: 1039C>T
+    description: 
+    tags: 
+  - id: '78'
+    c_notation: 
+    g_notation: 42129731T>C
+    p_notation: 
+    alt_notation: 1062A>G
+    description: 
+    tags: 
+  - id: '79'
+    c_notation: 
+    g_notation: 42129297A>G
+    p_notation: 
+    alt_notation: 1494T>C
+    description: 
+    tags: 
+  - id: '80'
+    c_notation: 
+    g_notation: 42129278G>A
+    p_notation: 
+    alt_notation: 1513C>T
+    description: 
+    tags: 
+  - id: '81'
+    c_notation: 
+    g_notation: 42129193T>C
+    p_notation: 
+    alt_notation: 1598A>G
+    description: 
+    tags: 
+  - id: '82'
+    c_notation: 
+    g_notation: 42129183C>T
+    p_notation: 
+    alt_notation: 1608G>A
+    description: V119M
+    tags: 
+  - id: '83'
+    c_notation: 
+    g_notation: 42129180A>T
+    p_notation: 
+    alt_notation: 1611T>A
+    description: F120I
+    tags: 
+  - id: '84'
+    c_notation: 
+    g_notation: 42129174C>A
+    p_notation: 
+    alt_notation: 1617G>T
+    description: A122S
+    tags: 
+  - id: '85'
+    c_notation: 
+    g_notation: 42129132C>T
+    p_notation: 
+    alt_notation: 1659G>A
+    description: V136M
+    tags: 
+  - id: '86'
+    c_notation: 
+    g_notation: 42129130C>G
+    p_notation: 
+    alt_notation: 1661G>C
+    description: 
+    tags: 
+  - id: '87'
+    c_notation: 
+    g_notation: 42129113A>G
+    p_notation: 
+    alt_notation: 1678T>C
+    description: L142S
+    tags: 
+  - id: '88'
+    c_notation: 
+    g_notation: 42129098T>C
+    p_notation: 
+    alt_notation: 1693A>G
+    description: K147R
+    tags: 
+  - id: '89'
+    c_notation: 
+    g_notation: 42129087G>C
+    p_notation: 
+    alt_notation: 1704C>G
+    description: Q151E
+    tags: 
+  - id: '90'
+    c_notation: 
+    g_notation: 42129084delA
+    p_notation: 
+    alt_notation: 1707delT
+    description: 118Frameshift
+    tags: 
+      - significant
+  - id: '91'
+    c_notation: 
+    g_notation: 42129075C>T
+    p_notation: 
+    alt_notation: 1716G>A
+    description: E155K
+    tags: 
+  - id: '92'
+    c_notation: 
+    g_notation: 42129071T>G
+    p_notation: 
+    alt_notation: 1720A>C
+    description: E156A
+    tags: 
+  - id: '93'
+    c_notation: 
+    g_notation: 42129071T>A
+    p_notation: 
+    alt_notation: 1720A>T
+    description: 
+    tags: 
+  - id: '94'
+    c_notation: 
+    g_notation: 42129067G>A
+    p_notation: 
+    alt_notation: 1724C>T
+    description: 
+    tags: 
+  - id: '95'
+    c_notation: 
+    g_notation: 42129056C>G
+    p_notation: 
+    alt_notation: 1735G>C
+    description: C161S
+    tags: 
+  - id: '96'
+    c_notation: 
+    g_notation: 42129042T>C
+    p_notation: 
+    alt_notation: 1749A>G
+    description: N166D
+    tags: 
+  - id: '97'
+    c_notation: 
+    g_notation: 42129034G>A
+    p_notation: 
+    alt_notation: 1757C>T
+    description: 
+    tags: 
+  - id: '98'
+    c_notation: 
+    g_notation: 42129033C>A
+    p_notation: 
+    alt_notation: 1758G>T
+    description: G169R/X
+    tags: 
+      - significant
+  - id: '99'
+    c_notation: 
+    g_notation: 42129033C>T
+    p_notation: 
+    alt_notation: 1758G>A
+    description: G169R/X
+    tags: 
+      - significant
+  - id: '100'
+    c_notation: 
+    g_notation: 42128945C>T
+    p_notation: 
+    alt_notation: 1846G>A
+    description: splicing defect
+    tags: 
+      - significant
+  - id: '101'
+    c_notation: 
+    g_notation: 42128933G>A
+    p_notation: 
+    alt_notation: 1858C>T
+    description: R173C
+    tags: 
+  - id: '102'
+    c_notation: 
+    g_notation: 42128942_42128943insAAAGGGGCG
+    ref_g_notation: 42128927_42128928insGGGGCGAAA
+    p_notation: 
+    alt_notation: 1863_1864ins(TTTCGCCCC)
+    description: 174_175insFRP
+    tags: 
+      - significant
+  - id: '103'
+    c_notation: 
+    g_notation: 42128942_42128943insAAAGGGGCGAAAGGGGCG
+    ref_g_notation: 42128927_42128928insGGGGCGAAAGGGGCGAAA
+    p_notation: 
+    alt_notation: 1863_1864ins(TTTCGCCCC)2
+    description: 174_175insFRPx2
+    tags: 
+      - significant
+  - id: '104'
+    c_notation: 
+    g_notation: 42128922A>G
+    p_notation: 
+    alt_notation: 1869T>C
+    description: 
+    tags: 
+  - id: '105'
+    c_notation: 
+    g_notation: 42128903_42128904insAT
+    p_notation: 
+    alt_notation: 1887insTA
+    description: 
+    tags: 
+  - id: '106'
+    c_notation: 
+    g_notation: 42128848C>T
+    p_notation: 
+    alt_notation: 1943G>A
+    description: R201H
+    tags: 
+  - id: '107'
+    c_notation: 
+    g_notation: 42128817_42128818insC
+    p_notation: 
+    alt_notation: 1973_1974insG
+    description: 211Frameshift
+    tags: 
+      - significant
+  - id: '108'
+    c_notation: 
+    g_notation: 42128815C>T
+    p_notation: 
+    alt_notation: 1976G>A
+    description: 
+    tags: 
+  - id: '109'
+    c_notation: 
+    g_notation: 42128813G>A
+    p_notation: 
+    alt_notation: 1978C>T
+    description: 
+    tags: 
+  - id: '110'
+    c_notation: 
+    g_notation: 42128812A>G
+    p_notation: 
+    alt_notation: 1979T>C
+    description: L213P
+    tags: 
+  - id: '111'
+    c_notation: 
+    g_notation: 42128796delG
+    p_notation: 
+    alt_notation: 1995delC
+    description: 
+    tags: 
+  - id: '112'
+    c_notation: 
+    g_notation: 42128694T>C
+    p_notation: 
+    alt_notation: 2097A>G
+    description: 
+    tags: 
+  - id: '113'
+    c_notation: 
+    g_notation: 42128662T>G
+    p_notation: 
+    alt_notation: 2129A>C
+    description: 
+    tags: 
+  - id: '114'
+    c_notation: 
+    g_notation: 42128500C>T
+    p_notation: 
+    alt_notation: 2291G>A
+    description: 
+    tags: 
+      - significant
+  - id: '115'
+    c_notation: 
+    g_notation: 42128488G>A
+    p_notation: 
+    alt_notation: 2303C>T
+    description: S183X
+    tags: 
+  - id: '116'
+    c_notation: 
+    g_notation: 42128483C>T
+    p_notation: 
+    alt_notation: 2308G>A
+    description: 
+    tags: 
+  - id: '117'
+    c_notation: 
+    g_notation: 42128321A>G
+    p_notation: 
+    alt_notation: 2470T>C
+    description: 
+    tags: 
+  - id: '118'
+    c_notation: 
+    g_notation: 42128311G>A
+    p_notation: 
+    alt_notation: 2480C>T
+    description: 
+    tags: 
+  - id: '119'
+    c_notation: 
+    g_notation: 42128308C>A
+    p_notation: 
+    alt_notation: 2483G>T
+    description: A237S
+    tags: 
+  - id: '120'
+    c_notation: 
+    g_notation: 42128272T>G
+    p_notation: 
+    alt_notation: 2519A>C
+    description: 
+    tags: 
+  - id: '121'
+    c_notation: 
+    g_notation: 42128251_42128254delTTAG
+    ref_g_notation: 42128249_42128252delAGTT
+    p_notation: 
+    alt_notation: 2539_2542delAACT
+    description: 255Frameshift
+    tags: 
+      - significant
+  - id: '122'
+    c_notation: 
+    g_notation: 42128242delT
+    p_notation: 
+    alt_notation: 2549delA
+    description: 259Frameshift
+    tags: 
+      - significant
+  - id: '123'
+    c_notation: 
+    g_notation: 42128235G>A
+    p_notation: 
+    alt_notation: 2556C>T
+    description: T261I
+    tags: 
+      - significant
+  - id: '124'
+    c_notation: 
+    g_notation: 42128218_42128219insG
+    ref_g_notation: 42128217_42128218insG
+    p_notation: 
+    alt_notation: 2573_2574insC
+    description: 267Frameshift
+    tags: 
+      - significant
+  - id: '125'
+    c_notation: 
+    g_notation: 42128217G>T
+    p_notation: 
+    alt_notation: 2574C>A
+    description: P267H
+    tags: 
+  - id: '126'
+    c_notation: 
+    g_notation: 42128216G>T
+    p_notation: 
+    alt_notation: 2575C>A
+    description: 
+    tags: 
+  - id: '127'
+    c_notation: 
+    g_notation: 42128215G>A
+    p_notation: 
+    alt_notation: 2576C>T
+    description: 
+    tags: 
+  - id: '128'
+    c_notation: 
+    g_notation: 42128212G>A
+    p_notation: 
+    alt_notation: 2579C>T
+    description: R269X
+    tags: 
+  - id: '129'
+    c_notation: 
+    g_notation: 42128203_42128206delTCAG
+    ref_g_notation: 42128201_42128204delAGTC
+    p_notation: 
+    alt_notation: 2587_2590delGACT
+    description: 271Frameshift
+    tags: 
+      - significant
+  - id: '130'
+    c_notation: 
+    g_notation: 42128185C>T
+    p_notation: 
+    alt_notation: 2606G>A
+    description: E278K
+    tags: 
+  - id: '131'
+    c_notation: 
+    g_notation: 42128181A>T
+    p_notation: 
+    alt_notation: 2610T>A
+    description: M279K
+    tags: 
+  - id: '132'
+    c_notation: 
+    g_notation: 42128176_42128178delTCT
+    ref_g_notation: 42128174_42128176delCTT
+    p_notation: 
+    alt_notation: 2615_2617delAAG
+    description: K281del
+    tags: 
+      - significant
+  - id: '133'
+    c_notation: 
+    g_notation: 42128130C>T
+    p_notation: 
+    alt_notation: 2661G>A
+    description: 
+    tags: 
+  - id: '134'
+    c_notation: 
+    g_notation: 42127963delG
+    p_notation: 
+    alt_notation: 2828delC
+    description: 288Frameshift
+    tags: 
+     - significant
+  - id: '135'
+    c_notation: 
+    g_notation: 42127941G>A
+    p_notation: 
+    alt_notation: 2850C>T
+    description: R296C
+    tags:
+#      - significant
+  - id: '136'
+    c_notation: 
+    g_notation: 42127938T>G
+    p_notation: 
+    alt_notation: 2853A>C
+    description: I297L
+    tags: 
+  - id: '137'
+    c_notation: 
+    g_notation: 42127846_42127864delCACATCCGGATGTAGGATC
+    p_notation: 
+    alt_notation: 2927_2945delGATCCTACATCCGGATGTG
+    description: 321Frameshift
+    tags: 
+      - significant
+  - id: '138'
+    c_notation: 
+    g_notation: 42127856T>G
+    p_notation: 
+    alt_notation: 2935A>C
+    description: H324P
+    tags: 
+      - significant
+  - id: '139'
+    c_notation: 
+    g_notation: 42127853G>A
+    p_notation: 
+    alt_notation: 2938C>T
+    description: P325L
+    tags: 
+  - id: '140'
+    c_notation: 
+    g_notation: 42127852C>T
+    p_notation: 
+    alt_notation: 2939G>A
+    description: 
+    tags: 
+  - id: '141'
+    c_notation: 
+    g_notation: 42127841C>G
+    p_notation: 
+    alt_notation: 2950G>C
+    description: splicing defect
+    tags: 
+      - significant
+  - id: '142'
+    c_notation: 
+    g_notation: 42127803C>T
+    p_notation: 
+    alt_notation: 2988G>A
+    description: splicing defect
+    tags: 
+      - significant
+  - id: '143'
+    c_notation: 
+    g_notation: 42127761C>T
+    p_notation: 
+    alt_notation: 3030G>G/A
+    description: 
+    tags: 
+  - id: '144'
+    c_notation: 
+    g_notation: 42127619T>G
+    p_notation: 
+    alt_notation: 3172A>C
+    description: E334A
+    tags: 
+  - id: '145'
+    c_notation: 
+    g_notation: 42127610T>C
+    p_notation: 
+    alt_notation: 3181A>G
+    description: 
+    tags: 
+  - id: '146'
+    c_notation: 
+    g_notation: 42127608C>T
+    p_notation: 
+    alt_notation: 3183G>A
+    description: V338M
+    tags: 
+  - id: '147'
+    c_notation: 
+    g_notation: 42127593G>C
+    p_notation: 
+    alt_notation: 3198C>G
+    description: R343G
+    tags: 
+  - id: '148'
+    c_notation: 
+    g_notation: 42127590G>A
+    p_notation: 
+    alt_notation: 3201C>T
+    description: R344X
+    tags: 
+      - significant
+  - id: '149'
+    c_notation: 
+    g_notation: 42127565T>C
+    p_notation: 
+    alt_notation: 3226A>G
+    description: 
+    tags: 
+  - id: '150'
+    c_notation: 
+    g_notation: 42127556T>C
+    p_notation: 
+    alt_notation: 3235 A>G
+    description: 
+    tags: 
+  - id: '151'
+    c_notation: 
+    g_notation: 42127537A>G
+    p_notation: 
+    alt_notation: 3254T>C
+    description: 
+    tags: 
+  - id: '152'
+    c_notation: 
+    g_notation: 42127533_42127534insAC
+    ref_g_notation: 42127531_42127532insAC
+    p_notation: 
+    alt_notation: 3259_3260insGT
+    description: 363Frameshift
+    tags: 
+      - significant
+  - id: '153'
+    c_notation: 
+    g_notation: 42127523A>G
+    p_notation: 
+    alt_notation: 3268T>C
+    description: 
+    tags: 
+  - id: '154'
+    c_notation: 
+    g_notation: 42127514A>G
+    p_notation: 
+    alt_notation: 3277T>C
+    description: I369T
+    tags: 
+  - id: '155'
+    c_notation: 
+    g_notation: 42127503C>T
+    p_notation: 
+    alt_notation: 3288G>A
+    description: G373S
+    tags: 
+  - id: '156'
+    c_notation: 
+    g_notation: 42127473C>T
+    p_notation: 
+    alt_notation: 3318G>A
+    description: E383K
+    tags: 
+  - id: '157'
+    c_notation: 
+    g_notation: 42127457C>T
+    p_notation: 
+    alt_notation: 3334G>A
+    description: R388H
+    tags:
+  - id: '158'
+    c_notation: 
+    g_notation: 42127407T>G
+    p_notation: 
+    alt_notation: 3384A>C
+    description: 
+    tags: 
+  - id: '159'
+    c_notation: 
+    g_notation: 42127356G>T
+    p_notation:
+    alt_notation: 3435C>A
+    description: 
+    tags: 
+  - id: '160'
+    c_notation: 
+    g_notation: 42127300C>T
+    p_notation:
+    alt_notation: 3491G>A
+    description:
+    tags: 
+  - id: '161'
+    c_notation: 
+    g_notation: 42127209T>C
+    p_notation: 
+    alt_notation: 3582A>G
+    description: 
+    tags: 
+  - id: '162'
+    c_notation: 
+    g_notation: 42127207C>T
+    p_notation: 
+    alt_notation: 3584G>A
+    description: 
+    tags: 
+  - id: '163'
+    c_notation: 
+    g_notation: 42127182C>A
+    p_notation: 
+    alt_notation: 3609G>T
+    description: 
+    tags: 
+  - id: '164'
+    c_notation: 
+    g_notation: 42127001G>A
+    p_notation: 
+    alt_notation: 3790C>T
+    description: 
+    tags: 
+  - id: '165'
+    c_notation: 
+    g_notation: 42126963C>T
+    p_notation: 
+    alt_notation: 3828G>A
+    description: 
+    tags: 
+  - id: '166'
+    c_notation: 
+    g_notation: 42126956T>G
+    p_notation: 
+    alt_notation: 3835A>C
+    description: K404Q
+    tags: 
+  - id: '167'
+    c_notation: 
+    g_notation: 42126938C>T
+    p_notation: 
+    alt_notation: 3853G>A
+    description: E410K
+    tags: 
+  - id: '168'
+    c_notation: 
+    g_notation: 42126914C>T
+    p_notation: 
+    alt_notation: 3877G>A
+    description: E418K
+    tags: 
+  - id: '169'
+    c_notation: 
+    g_notation: 42126914C>G
+    p_notation: 
+    alt_notation: 3877G>C
+    description: 
+    tags: 
+  - id: '170'
+    c_notation: 
+    g_notation: 42126904A>G
+    p_notation: 
+    alt_notation: 3887T>C
+    description: 
+    tags: 
+  - id: '171'
+    c_notation: 
+    g_notation: 42126896G>A
+    p_notation: 
+    alt_notation: 3895C>T
+    description: Q424X
+    tags: 
+  - id: '172'
+    c_notation: 
+    g_notation: 42126749C>T
+    p_notation: 
+    alt_notation: 4042G>A
+    description: 
+    tags: 
+  - id: '173'
+    c_notation: 
+    g_notation: 42126747G>A
+    p_notation: 
+    alt_notation: 4044C>T
+    description: R441C
+    tags: 
+      - significant
+  - id: '174'
+    c_notation: 
+    g_notation: 42126746C>T
+    p_notation: 
+    alt_notation: 4045G>A
+    description: R441H
+    tags: 
+  - id: '175'
+    c_notation: 
+    g_notation: 42126697G>T
+    p_notation: 
+    alt_notation: 4094C>A
+    description: 
+    tags: 
+  - id: '176'
+    c_notation: 
+    g_notation: 42126681G>C
+    p_notation: 
+    alt_notation: 4110C>G
+    description: 
+    tags: 
+  - id: '177'
+    c_notation: 
+    g_notation: 42126676G>A
+    p_notation: 
+    alt_notation: 4115C>T
+    description: 
+    tags: 
+  - id: '178'
+    c_notation: 
+    g_notation: 42126667C>G
+    p_notation: 
+    alt_notation: 4124G>C
+    description: Exon 9 conversion
+    tags: 
+  - id: '179'
+    c_notation: 
+    g_notation: 42126663G>C
+    p_notation: 
+    alt_notation: 4128C>G
+    description: Exon 9 conversion
+    tags: 
+  - id: '180'
+    c_notation: 
+    g_notation: 42126660T>C
+    p_notation: 
+    alt_notation: 4131A>G
+    description: Exon 9 conversion
+    tags: 
+  - id: '181'
+    c_notation: 
+    g_notation: 42126658A>G
+    p_notation: 
+    alt_notation: 4133T>C
+    description: Exon 9 conversion
+    tags: 
+  - id: '182'
+    c_notation: 
+    g_notation: 42126636G>A
+    p_notation: 
+    alt_notation: 4155C>T
+    description: Exon 9 conversion
+    tags: 
+  - id: '183'
+    c_notation: 
+    g_notation: 42126635T>G
+    p_notation: 
+    alt_notation: 4156A>C
+    description: Exon 9 conversion
+    tags: 
+  - id: '184'
+    c_notation: 
+    g_notation: 42126633C>G
+    p_notation: 
+    alt_notation: 4158G>C
+    description: Exon 9 conversion
+    tags: 
+  - id: '185'
+    c_notation: 
+    g_notation: 42126627A>C
+    p_notation: 
+    alt_notation: 4164T>G
+    description: Exon 9 conversion
+    tags: 
+  - id: '186'
+    c_notation: 
+    g_notation: 42126625A>G
+    p_notation: 
+    alt_notation: 4166T>C
+    description: Exon 9 conversion
+    tags: 
+  - id: '187'
+    c_notation: 
+    g_notation: 42126624C>T
+    p_notation: 
+    alt_notation: 4167G>A
+    description: Exon 9 conversion
+    tags: 
+  - id: '188'
+    c_notation: 
+    g_notation: 42126623G>C
+    p_notation: 
+    alt_notation: 4168C>G
+    description: Exon 9 conversion
+    tags: 
+  - id: '189'
+    c_notation: 
+    g_notation: 42126622A>G
+    p_notation: 
+    alt_notation: 4169T>C
+    description: Exon 9 conversion
+    tags: 
+  - id: '190'
+    c_notation: 
+    g_notation: 42126619G>A
+    p_notation: 
+    alt_notation: 4172C>T
+    description: Exon 9 conversion
+    tags: 
+  - id: '191'
+    c_notation: 
+    g_notation: 42126666_42126667insAGTGGGCAC
+    ref_g_notation: 42126658_42126666dupAGTGGGCAC
+    p_notation: 
+    alt_notation: 4125_4133dupGTGCCCACT
+    description: 468_470dupVPT
+    tags: 
+      - significant
+  - id: '192'
+    c_notation: 
+    g_notation: 42126634A>C
+    p_notation: 
+    alt_notation: 4157T>G
+    description: 
+    tags: 
+  - id: '193'
+    c_notation: 
+    g_notation: 42126611C>G
+    p_notation: 
+    alt_notation: 4180G>C
+    description: S486T
+    tags: 
+  - id: '194'
+    c_notation: 
+    g_notation: 42126390G>A
+    p_notation: 
+    alt_notation: 4401C>T
+    description: 
+    tags: 
+  - id: '195'
+    c_notation: 
+    g_notation: 42126310C>T
+    p_notation: 
+    alt_notation: 4481G>A
+    description: 
+    tags: 
+  - id: '196'
+    c_notation: 
+    g_notation: 42126256_42126257insA
+    p_notation: 
+    alt_notation: 4535insT
+    description: 
+    tags: 
+  - id: '3a'
+    c_notation: 
+    g_notation: 42132392C>A
+    ref_g_notation: 42132391_42132392delTCinsAA
+    p_notation: 
+    alt_notation: '-1601_-1600GA>TT'
+    description: 
+    tags: 
+haplotypes:
+- name: PA165816576
+  type: '*1'
+  snps: []
+  activity: '-'
+- name: PA165988479
+  type: '*1XN'
+  snps: []
+  activity: Incr
+- name: PA165971524
+  type: '*1A'
+  snps: []
+  activity: Normal
+- name: PA165971525
+  type: '*1B'
+  snps:
+  - '165'
+  activity: Normal
+- name: PA165971526
+  type: '*1C'
+  snps:
+  - '109'
+  activity: Normal
+- name: PA165971527
+  type: '*1D'
+  snps:
+  - '126'
+  activity: '-'
+- name: PA165971528
+  type: '*1E'
+  snps:
+  - '104'
+  activity: '-'
+- name: PA165816577
+  type: '*2'
+  snps:
+  - '86'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165988480
+  type: '*2XN'
+  snps:
+  - '86'
+  - '135'
+  - '193'
+  activity: Incr
+- name: PA165971529
+  type: '*2A'
+  snps:
+  - '4'
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '135'
+  - '193'
+  activity: Normal
+- name: PA165971530
+  type: '*2B'
+  snps:
+  - '77'
+  - '86'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971531
+  type: '*2C'
+  snps:
+  - '86'
+  - '117'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971532
+  type: '*2D'
+  snps:
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971533
+  type: '*2E'
+  snps:
+  - '69'
+  - '86'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971534
+  type: '*2F'
+  snps:
+  - '86'
+  - '94'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971535
+  type: '*2G'
+  snps:
+  - '86'
+  - '117'
+  - '126'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971536
+  type: '*2H'
+  snps:
+  - '86'
+  - '118'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971537
+  type: '*2K'
+  snps:
+  - '86'
+  - '135'
+  - '177'
+  - '193'
+  activity: '-'
+- name: PA165971538
+  type: '*2L'
+  snps:
+  - '7'
+  - '11'
+  - '18'
+  - '58'
+  - '61'
+  - '62'
+  - '80'
+  - '86'
+  - '97'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: '-'
+- name: PA165971539
+  type: '*2M'
+  snps:
+  - '9'
+  - '11'
+  - '17'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA165816578
+  type: '*3'
+  snps:
+  - '122'
+  activity: '-'
+- name: PA166128733
+  type: '*3XN'
+  snps:
+  - '122'
+  activity: '-'
+- name: PA165971540
+  type: '*3A'
+  snps:
+  - '122'
+  activity: None
+- name: PA165971541
+  type: '*3B'
+  snps:
+  - '96'
+  - '122'
+  activity: '-'
+- name: PA165816579
+  type: '*4'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '193'
+  activity: '-'
+- name: PA166123455
+  type: '*4XN'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '193'
+  activity: None
+- name: PA165971542
+  type: '*4A'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '193'
+  activity: None
+- name: PA165971543
+  type: '*4B'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '100'
+  - '193'
+  activity: None
+- name: PA165971544
+  type: '*4C'
+  snps:
+  - '46'
+  - '86'
+  - '100'
+  - '170'
+  - '193'
+  activity: None
+- name: PA165971545
+  type: '*4D'
+  snps:
+  - '46'
+  - '77'
+  - '86'
+  - '100'
+  - '193'
+  activity: None
+- name: PA165971546
+  type: '*4E'
+  snps:
+  - '46'
+  - '86'
+  - '100'
+  - '193'
+  activity: '-'
+- name: PA165971547
+  type: '*4F'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '101'
+  - '193'
+  activity: '-'
+- name: PA165971548
+  type: '*4G'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '139'
+  - '193'
+  activity: '-'
+- name: PA165971549
+  type: '*4H'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '169'
+  - '193'
+  activity: '-'
+- name: PA165971550
+  type: '*4J'
+  snps:
+  - '46'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  activity: '-'
+- name: PA165971551
+  type: '*4K'
+  snps:
+  - '46'
+  - '86'
+  - '100'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165971552
+  type: '*4L'
+  snps:
+  - '46'
+  - '69'
+  - '86'
+  - '100'
+  - '193'
+  activity: '-'
+- name: PA165971553
+  type: '*4M'
+  snps:
+  - '11'
+  - '61'
+  - '62'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '112'
+  - '158'
+  - '161'
+  - '194'
+  activity: '-'
+- name: PA165971554
+  type: '*4N'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '61'
+  - '62'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '112'
+  - '158'
+  - '161'
+  - '178'
+  - '179'
+  - '180'
+  - '181'
+  - '182'
+  - '183'
+  - '184'
+  - '185'
+  - '186'
+  - '187'
+  - '188'
+  - '189'
+  - '190'
+  - '193'
+  - '194'
+  activity: '-'
+- name: PA166123308
+  type: '*4P'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '61'
+  - '62'
+  - '67'
+  - '68'
+  - '69'
+  - '86'
+  - '100'
+  - '112'
+  - '127'
+  - '158'
+  - '159'
+  - '161'
+  - '194'
+  activity: '-'
+- name: PA165948092
+  type: '*5'
+  snps: []
+  activity: None
+- name: PA165816581
+  type: '*6'
+  snps:
+  - '90'
+  activity: '-'
+- name: PA166128734
+  type: '*6XN'
+  snps:
+  - '90'
+  activity: '-'
+- name: PA165971555
+  type: '*6A'
+  snps:
+  - '90'
+  activity: None
+- name: PA165971556
+  type: '*6B'
+  snps:
+  - '90'
+  - '108'
+  activity: None
+- name: PA165971557
+  type: '*6C'
+  snps:
+  - '90'
+  - '108'
+  - '193'
+  activity: None
+- name: PA165971558
+  type: '*6D'
+  snps:
+  - '90'
+  - '155'
+  activity: '-'
+- name: PA165971559
+  type: '*7'
+  snps:
+  - '138'
+  activity: None
+- name: PA165971560
+  type: '*8'
+  snps:
+  - '86'
+  - '98'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165948317
+  type: '*9'
+  snps:
+  - '132'
+  activity: Decr
+- name: PA166123309
+  type: '*9X2'
+  snps:
+  - '132'
+  activity: '-'
+- name: PA165816582
+  type: '*10'
+  snps:
+  - '46'
+  - '86'
+  - '193'
+  activity: '-'
+- name: PA166123456
+  type: '*10X2'
+  snps:
+  - '46'
+  - '86'
+  - '193'
+  activity: Decr
+- name: PA165971561
+  type: '*10A'
+  snps:
+  - '46'
+  - '86'
+  - '193'
+  activity: Decr
+- name: PA165971562
+  type: '*10B'
+  snps:
+  - '6'
+  - '9'
+  - '11'
+  - '15'
+  - '46'
+  - '77'
+  - '86'
+  - '193'
+  activity: Decr
+- name: PA165971563
+  type: '*10D'
+  snps:
+  - '46'
+  - '77'
+  - '86'
+  - '193'
+  activity: '-'
+- name: PA165971564
+  type: '*11'
+  snps:
+  - '63'
+  - '86'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165971565
+  type: '*12'
+  snps:
+  - '48'
+  - '86'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165988481
+  type: '*13'
+  snps: []
+  activity: None
+- name: PA165988482
+  type: '*14'
+  snps:
+  - '99'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971566
+  type: '*14A'
+  snps:
+  - '46'
+  - '99'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165971567
+  type: '*14B'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '99'
+  - '135'
+  - '193'
+  activity: Decr
+- name: PA165971568
+  type: '*15'
+  snps:
+  - '50'
+  activity: None
+- name: PA165816583
+  type: '*17'
+  snps:
+  - '73'
+  - '86'
+  - '135'
+  - '193'
+  activity: Decr
+- name: PA166123457
+  type: '*17X2'
+  snps:
+  - '73'
+  - '86'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971569
+  type: '*18'
+  snps:
+  - '191'
+  activity: None
+- name: PA165971570
+  type: '*19'
+  snps:
+  - '86'
+  - '121'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165971571
+  type: '*20'
+  snps:
+  - '86'
+  - '107'
+  - '109'
+  - '110'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165988484
+  type: '*21'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '124'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971572
+  type: '*21A'
+  snps:
+  - '4'
+  - '6'
+  - '11'
+  - '18'
+  - '20'
+  - '21'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '58'
+  - '59'
+  - '86'
+  - '124'
+  - '135'
+  - '162'
+  - '193'
+  activity: None
+- name: PA165971573
+  type: '*21B'
+  snps:
+  - '4'
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '124'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165971574
+  type: '*22'
+  snps:
+  - '45'
+  activity: '-'
+- name: PA165971575
+  type: '*23'
+  snps:
+  - '65'
+  activity: '-'
+- name: PA165971576
+  type: '*24'
+  snps:
+  - '136'
+  activity: '-'
+- name: PA165971577
+  type: '*25'
+  snps:
+  - '147'
+  activity: '-'
+- name: PA165971578
+  type: '*26'
+  snps:
+  - '154'
+  activity: '-'
+- name: PA165971579
+  type: '*27'
+  snps:
+  - '167'
+  activity: Normal
+- name: PA165971580
+  type: '*28'
+  snps:
+  - '41'
+  - '86'
+  - '89'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165948318
+  type: '*29'
+  snps:
+  - '85'
+  - '86'
+  - '135'
+  - '146'
+  - '193'
+  activity: Decr
+- name: PA166128735
+  type: '*29X2'
+  snps:
+  - '85'
+  - '86'
+  - '135'
+  - '146'
+  - '193'
+  activity: '-'
+- name: PA165971581
+  type: '*30'
+  snps:
+  - '86'
+  - '102'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971582
+  type: '*31'
+  snps:
+  - '1'
+  - '4'
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '172'
+  - '193'
+  - '195'
+  activity: None
+- name: PA165971583
+  type: '*32'
+  snps:
+  - '86'
+  - '135'
+  - '167'
+  - '193'
+  activity: '-'
+- name: PA165971584
+  type: '*33'
+  snps:
+  - '119'
+  activity: Normal
+- name: PA165971585
+  type: '*34'
+  snps:
+  - '135'
+  activity: '-'
+- name: PA165988487
+  type: '*35'
+  snps:
+  - '42'
+  - '86'
+  - '135'
+  - '193'
+  activity: '-'
+- name: PA165971588
+  type: '*35XN'
+  snps:
+  - '42'
+  - '86'
+  - '135'
+  - '193'
+  activity: Incr
+- name: PA165971586
+  type: '*35A'
+  snps:
+  - '4'
+  - '42'
+  - '86'
+  - '135'
+  - '193'
+  activity: Normal
+- name: PA165971587
+  type: '*35B'
+  snps:
+  - '1'
+  - '4'
+  - '11'
+  - '18'
+  - '20'
+  - '22'
+  - '23'
+  - '24'
+  - '25'
+  - '26'
+  - '27'
+  - '28'
+  - '29'
+  - '30'
+  - '31'
+  - '32'
+  - '33'
+  - '34'
+  - '35'
+  - '36'
+  - '38'
+  - '42'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA165971589
+  type: '*36XN'
+  snps:
+  - '6'
+  - '8'
+  - '11'
+  - '15'
+  - '46'
+  - '77'
+  - '86'
+  - '178'
+  - '179'
+  - '180'
+  - '181'
+  - '182'
+  - '183'
+  - '184'
+  - '185'
+  - '186'
+  - '187'
+  - '188'
+  - '189'
+  - '190'
+  - '193'
+  activity: '-'
+- name: PA165988488
+  type: '*36'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '112'
+  - '158'
+  - '161'
+  - '178'
+  - '179'
+  - '180'
+  - '181'
+  - '182'
+  - '183'
+  - '184'
+  - '185'
+  - '186'
+  - '187'
+  - '188'
+  - '189'
+  - '190'
+  - '193'
+  activity: None
+- name: PA165971591
+  type: '*37'
+  snps:
+  - '46'
+  - '77'
+  - '86'
+  - '106'
+  - '193'
+  activity: '-'
+- name: PA165971592
+  type: '*38'
+  snps:
+  - '129'
+  activity: None
+- name: PA166001447
+  type: '*39'
+  snps:
+  - '86'
+  - '193'
+  activity: Normal
+- name: PA165971594
+  type: '*40'
+  snps:
+  - '73'
+  - '86'
+  - '103'
+  - '135'
+  - '193'
+  activity: None
+- name: PA165816584
+  type: '*41'
+  snps:
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '135'
+  - '142'
+  - '193'
+  activity: Decr
+- name: PA166128209
+  type: '*41X2'
+  snps:
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '135'
+  - '142'
+  - '193'
+  activity: '-'
+- name: PA165971595
+  type: '*42'
+  snps:
+  - '86'
+  - '135'
+  - '152'
+  - '193'
+  activity: None
+- name: PA165971596
+  type: '*43'
+  snps:
+  - '44'
+  activity: '-'
+- name: PA165971597
+  type: '*44'
+  snps:
+  - '45'
+  - '141'
+  activity: None
+- name: PA165988489
+  type: '*45'
+  snps:
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '91'
+  - '126'
+  - '133'
+  - '135'
+  - '151'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: '-'
+- name: PA165988490
+  type: '*45XN'
+  snps:
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '91'
+  - '126'
+  - '133'
+  - '135'
+  - '151'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: '-'
+- name: PA165971598
+  type: '*45A'
+  snps:
+  - '3'
+  - 3a
+  - '10'
+  - '13'
+  - '14'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '91'
+  - '113'
+  - '126'
+  - '133'
+  - '135'
+  - '151'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: N_or_Dec
+- name: PA165971599
+  type: '*45B'
+  snps:
+  - '5'
+  - '7'
+  - '11'
+  - '13'
+  - '18'
+  - '19'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '91'
+  - '126'
+  - '133'
+  - '135'
+  - '151'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: N_or_Dec
+- name: PA165971600
+  type: '*46'
+  snps:
+  - '5'
+  - '7'
+  - '11'
+  - '18'
+  - '44'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '91'
+  - '126'
+  - '133'
+  - '135'
+  - '143'
+  - '151'
+  - '158'
+  - '160'
+  - '162'
+  - '164'
+  - '193'
+  activity: N_or_Dec
+- name: PA165971601
+  type: '*47'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '43'
+  - '46'
+  - '77'
+  - '86'
+  - '193'
+  activity: None
+- name: PA165971602
+  type: '*48'
+  snps:
+  - '66'
+  activity: Normal
+- name: PA165971603
+  type: '*49'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '77'
+  - '83'
+  - '86'
+  - '193'
+  activity: Decr
+- name: PA165971604
+  type: '*50'
+  snps:
+  - '92'
+  activity: Decr
+- name: PA165971605
+  type: '*51'
+  snps:
+  - '4'
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '135'
+  - '144'
+  - '193'
+  activity: None
+- name: PA165971606
+  type: '*52'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '77'
+  - '86'
+  - '168'
+  - '193'
+  - '194'
+  activity: '-'
+- name: PA165971607
+  type: '*53'
+  snps:
+  - '81'
+  - '83'
+  - '84'
+  activity: Incr
+- name: PA165971608
+  type: '*54'
+  snps:
+  - '46'
+  - '77'
+  - '86'
+  - '123'
+  - '193'
+  activity: Decr
+- name: PA165971609
+  type: '*55'
+  snps:
+  - '86'
+  - '135'
+  - '164'
+  - '166'
+  - '193'
+  activity: Decr
+- name: PA165988494
+  type: '*56'
+  snps:
+  - '86'
+  - '148'
+  - '158'
+  - '193'
+  activity: '-'
+- name: PA165971610
+  type: '*56A'
+  snps:
+  - '4'
+  - '11'
+  - '18'
+  - '20'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '86'
+  - '135'
+  - '148'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: None
+- name: PA165971611
+  type: '*56B'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '112'
+  - '148'
+  - '158'
+  - '161'
+  - '193'
+  activity: '-'
+- name: PA165971612
+  type: '*57'
+  snps:
+  - '46'
+  - '58'
+  - '62'
+  - '64'
+  - '77'
+  - '86'
+  - '158'
+  - '161'
+  - '178'
+  - '179'
+  - '180'
+  - '181'
+  - '182'
+  - '183'
+  - '184'
+  - '185'
+  - '186'
+  - '187'
+  - '188'
+  - '189'
+  - '190'
+  - '193'
+  activity: None
+- name: PA165971613
+  type: '*58'
+  snps:
+  - '6'
+  - '11'
+  - '18'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '62'
+  - '73'
+  - '86'
+  - '102'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: '-'
+- name: PA165971614
+  type: '*59'
+  snps:
+  - '86'
+  - '114'
+  - '135'
+  - '140'
+  - '193'
+  activity: Decr
+- name: PA165971615
+  type: '*60'
+  snps:
+  - '105'
+  - '115'
+  activity: '-'
+- name: PA165971616
+  type: '*61'
+  snps: []
+  activity: '-'
+- name: PA165971617
+  type: '*62'
+  snps:
+  - '173'
+  activity: None
+- name: PA165971618
+  type: '*63'
+  snps: []
+  activity: '-'
+- name: PA165971619
+  type: '*64'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '62'
+  - '73'
+  - '86'
+  - '112'
+  - '158'
+  - '161'
+  - '193'
+  - '194'
+  activity: '-'
+- name: PA165971620
+  type: '*65'
+  snps:
+  - '46'
+  - '58'
+  - '62'
+  - '86'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA166128736
+  type: '*68'
+  snps: []
+  activity: None
+- name: PA165971621
+  type: '*69'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '61'
+  - '62'
+  - '78'
+  - '86'
+  - '135'
+  - '142'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  - '194'
+  - '195'
+  activity: Decr
+- name: PA165971622
+  type: '*70'
+  snps:
+  - '37'
+  - '58'
+  - '62'
+  - '82'
+  - '85'
+  - '86'
+  - '146'
+  - '158'
+  - '193'
+  activity: '-'
+- name: PA165971623
+  type: '*71'
+  snps:
+  - '4'
+  - '49'
+  - '79'
+  activity: '-'
+- name: PA165971624
+  type: '*72'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '112'
+  - '156'
+  - '158'
+  - '161'
+  - '193'
+  - '194'
+  activity: Decr
+- name: PA165971625
+  type: '*73'
+  snps:
+  - '18'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '61'
+  - '62'
+  - '70'
+  - '86'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  - '196'
+  activity: '-'
+- name: PA165971626
+  type: '*74'
+  snps:
+  - '67'
+  - '163'
+  activity: '-'
+- name: PA165971627
+  type: '*75'
+  snps:
+  - '174'
+  activity: '-'
+- name: PA166123321
+  type: '*81'
+  snps:
+  - '128'
+  - '130'
+  - '131'
+  activity: '-'
+- name: PA166123322
+  type: '*82'
+  snps:
+  - '67'
+  - '68'
+  - '69'
+  - '71'
+  - '72'
+  - '74'
+  - '75'
+  - '76'
+  activity: '-'
+- name: PA166123323
+  type: '*83'
+  snps:
+  - '62'
+  - '178'
+  - '179'
+  - '180'
+  - '181'
+  - '182'
+  - '183'
+  - '184'
+  - '185'
+  - '186'
+  - '187'
+  - '188'
+  - '189'
+  - '190'
+  - '193'
+  activity: '-'
+- name: PA166123324
+  type: '*84'
+  snps:
+  - '2'
+  - '11'
+  - '18'
+  - '20'
+  - '40'
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '125'
+  - '135'
+  - '158'
+  - '160'
+  - '162'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA166123325
+  type: '*85'
+  snps:
+  - '2'
+  - '7'
+  - '11'
+  - '18'
+  - '47'
+  - '58'
+  - '60'
+  - '61'
+  - '62'
+  - '80'
+  - '86'
+  - '116'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '192'
+  - '193'
+  activity: '-'
+- name: PA166123326
+  type: '*86'
+  snps:
+  - '130'
+  - '131'
+  activity: '-'
+- name: PA166123327
+  type: '*87'
+  snps:
+  - '39'
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '193'
+  activity: '-'
+- name: PA166123328
+  type: '*88'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '61'
+  - '62'
+  - '71'
+  - '86'
+  - '158'
+  - '162'
+  - '164'
+  - '193'
+  activity: '-'
+- name: PA166123329
+  type: '*89'
+  snps:
+  - '87'
+  activity: '-'
+- name: PA166123330
+  type: '*90'
+  snps:
+  - '88'
+  activity: '-'
+- name: PA166123331
+  type: '*91'
+  snps:
+  - '95'
+  - '135'
+  - '142'
+  activity: '-'
+- name: PA166123332
+  type: '*92'
+  snps:
+  - '111'
+  activity: None
+- name: PA166123333
+  type: '*93'
+  snps:
+  - '120'
+  activity: '-'
+- name: PA166128737
+  type: '*94'
+  snps:
+  - '46'
+  - '62'
+  - '77'
+  - '86'
+  - '145'
+  - '193'
+  activity: '-'
+- name: PA166123334
+  type: '*94A'
+  snps:
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '145'
+  - '193'
+  activity: '-'
+- name: PA166123335
+  type: '*94B'
+  snps:
+  - '46'
+  - '62'
+  - '77'
+  - '86'
+  - '145'
+  - '158'
+  - '193'
+  activity: '-'
+- name: PA166123336
+  type: '*95'
+  snps:
+  - '46'
+  - '62'
+  - '77'
+  - '86'
+  - '157'
+  - '158'
+  - '193'
+  activity: '-'
+- name: PA166123337
+  type: '*96'
+  snps:
+  - '171'
+  activity: '-'
+- name: PA166123338
+  type: '*97'
+  snps:
+  - '175'
+  activity: '-'
+- name: PA166123339
+  type: '*98'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '61'
+  - '62'
+  - '86'
+  - '135'
+  - '158'
+  - '162'
+  - '164'
+  - '176'
+  - '193'
+  activity: '-'
+- name: PA166123340
+  type: '*100'
+  snps:
+  - '6'
+  - '11'
+  - '12'
+  - '15'
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '112'
+  - '134'
+  - '158'
+  - '161'
+  - '193'
+  - '194'
+  activity: None
+- name: PA166123341
+  type: '*101'
+  snps:
+  - '6'
+  - '11'
+  - '15'
+  - '46'
+  - '58'
+  - '62'
+  - '77'
+  - '86'
+  - '112'
+  - '137'
+  - '158'
+  - '161'
+  - '193'
+  - '194'
+  activity: None
+- name: PA166123342
+  type: '*102'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '66'
+  - '86'
+  - '135'
+  - '158'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA166123343
+  type: '*103'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '66'
+  - '86'
+  - '96'
+  - '135'
+  - '158'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA166123344
+  type: '*104'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '62'
+  - '86'
+  - '93'
+  - '135'
+  - '158'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA166123345
+  type: '*105'
+  snps:
+  - '51'
+  - '52'
+  - '53'
+  - '54'
+  - '55'
+  - '56'
+  - '57'
+  - '58'
+  - '61'
+  - '62'
+  - '86'
+  - '135'
+  - '153'
+  - '158'
+  - '164'
+  - '193'
+  - '195'
+  activity: '-'
+- name: PA166129550
+  type: '*107'
+  snps:
+  - '85'
+  activity: '-'
+- name: PA166129551
+  type: '*108'
+  snps:
+  - '149'
+  - '150'
+  activity: '-'
+- name: PA166129552
+  type: '*109'
+  snps:
+  - '16'
+  - '132'
+  - '146'
+  activity: '-'

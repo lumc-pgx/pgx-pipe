@@ -36,16 +36,29 @@ The pipeline behavior is configured by editing [config.yaml](config.yaml).
 - Activate the conda environment created during installation
   - `source activate pgx-pipe`
 
-- For parallel execution on the cluster, writing output to the default *output* directory
-  - `pipe-runner`
+## Example:
+  - `pipe-runner -s Snakefile -d output_dir -c config.yaml -cl cluster_settings.yaml`
 
-- To specify that the pipeline should write output to a location other than the default:
-  - `pipe-runner --directory path/to/output/directory`
+Modify the config.yaml and cluster_settings.yaml according to the location of your data and run parameters.
+The CYP2D6_locus_config.yaml is an example of locus definition file indicated in the run_config.yaml and should be changed according to the gene of interest.
 
 - Note
   - The first run of the pipeline will create conda environments where required for the individual
     pipeline rules. This process can take some time.
   - Subsequent runs of the pipeline will re-use these environments, resulting in faster execution.
+
+## Outputs
+The output of the pipeline includes the following folders
+
+```
+- Annotation
+- Haplotyping
+- Phasing
+- Structural variation
+- Summary
+- Variant calling
+
+```
 
 
 ## Overview
