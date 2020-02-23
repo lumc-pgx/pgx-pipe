@@ -2,7 +2,7 @@
 	path = modules/preprocessor
 	url = git@github.com:lumc-pgx/preprocessor.git
 [submodule "modules/variant_calling"]
-	path = modules/variant-calling
+	path = modules/variant_calling
 	url = git@github.com:lumc-pgx/variant-calling.git
 [submodule "modules/haplotyping"]
 	path = modules/haplotyping
