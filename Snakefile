@@ -1,7 +1,7 @@
 import os
 
 include: "modules/preprocessor/helper.snake"
-PARAMS = PreprocessingHelper(config, "Pugwash Pharmacogenomics")
+PARAMS = PreprocessingHelper(config, "LUMC Pharmacogenomics")
 
 if len(config["LOCI"]) > 1:
     raise WorkflowError("Multiple loci not yet supported")
